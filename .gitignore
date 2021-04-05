@@ -171,4 +171,5 @@ fabric.properties
 /web/css/
 /web/js/
 
+/.env.local
 # End of https://www.toptal.com/developers/gitignore/api/phpstorm,composer,symfony

@@ -35,6 +35,11 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $Birth;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -114,5 +119,17 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getBirth(): ?\DateTimeInterface
+    {
+        return $this->Birth;
+    }
+
+    public function setBirth(\DateTimeInterface $Birth): self
+    {
+        $this->Birth = $Birth;
+
+        return $this;
     }
 }
