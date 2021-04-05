@@ -29,9 +29,15 @@ class Category
      */
     private $activities;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Course::class, mappedBy="Category")
+     */
+    private $courses;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
+        $this->courses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Category
             // set the owning side to null (unless already changed)
             if ($activity->getCategory() === $this) {
                 $activity->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Course[]
+     */
+    public function getCourses(): Collection
+    {
+        return $this->courses;
+    }
+
+    public function addCourse(Course $course): self
+    {
+        if (!$this->courses->contains($course)) {
+            $this->courses[] = $course;
+            $course->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCourse(Course $course): self
+    {
+        if ($this->courses->removeElement($course)) {
+            // set the owning side to null (unless already changed)
+            if ($course->getCategory() === $this) {
+                $course->setCategory(null);
             }
         }
 
