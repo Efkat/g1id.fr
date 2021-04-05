@@ -34,10 +34,16 @@ class Category
      */
     private $courses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Exercice::class, mappedBy="Category")
+     */
+    private $exercices;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
         $this->courses = new ArrayCollection();
+        $this->exercices = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,6 +117,36 @@ class Category
             // set the owning side to null (unless already changed)
             if ($course->getCategory() === $this) {
                 $course->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Exercice[]
+     */
+    public function getExercices(): Collection
+    {
+        return $this->exercices;
+    }
+
+    public function addExercice(Exercice $exercice): self
+    {
+        if (!$this->exercices->contains($exercice)) {
+            $this->exercices[] = $exercice;
+            $exercice->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExercice(Exercice $exercice): self
+    {
+        if ($this->exercices->removeElement($exercice)) {
+            // set the owning side to null (unless already changed)
+            if ($exercice->getCategory() === $this) {
+                $exercice->setCategory(null);
             }
         }
 
