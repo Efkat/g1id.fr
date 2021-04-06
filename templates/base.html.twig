@@ -25,12 +25,17 @@
                 </ul>
             </nav>
             <div>
-                <p><a href="/login">Connexion</a></p>
-                <p><a href="/register">Inscription</a></p>
+                {% if app.user %}
+                    <p>Bonjour {{ app.user.username }},</p>
+                {% else %}
+                    <p><a href="/login">Connexion</a></p>
+                    <p><a href="/register">Inscription</a></p>
+                {% endif %}
             </div>
         </header>
         <main>
-            {% block body %}{% endblock %}
+            {% block body %}
+            {% endblock %}
         </main>
         <footer>
             <p>Réalisé par <a href="mailto:hugo.ben80000@gmail.com">Hugo Benabdelhak</a></p>
