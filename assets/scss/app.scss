@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/bootstrap";
+li{
+  list-style: none;
+}
+
+header{
+  height: 12vh;
+  border-bottom: 2px solid grey;
+  object{
+    max-width: 70%;
+  }
+  nav ul{
+    padding: 0;
+    margin: 0;
+  }
+  p{
+    margin: 0;
+  }
+}
