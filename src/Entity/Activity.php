@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActivityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,15 +35,25 @@ class Activity
     private $Title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=450)
      */
-    private $Content;
+    private $Summary;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="activities")
      * @ORM\JoinColumn(nullable=false)
      */
     private $Category;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ActivityChapter::class, mappedBy="Activity")
+     */
+    private $activityChapters;
+
+    public function __construct()
+    {
+        $this->activityChapters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -84,14 +96,14 @@ class Activity
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getSummary(): ?string
     {
-        return $this->Content;
+        return $this->Summary;
     }
 
-    public function setContent(string $Content): self
+    public function setSummary(string $Summary): self
     {
-        $this->Content = $Content;
+        $this->Summary = $Summary;
 
         return $this;
     }
@@ -104,6 +116,36 @@ class Activity
     public function setCategory(?Category $Category): self
     {
         $this->Category = $Category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ActivityChapter[]
+     */
+    public function getActivityChapters(): Collection
+    {
+        return $this->activityChapters;
+    }
+
+    public function addActivityChapter(ActivityChapter $activityChapter): self
+    {
+        if (!$this->activityChapters->contains($activityChapter)) {
+            $this->activityChapters[] = $activityChapter;
+            $activityChapter->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivityChapter(ActivityChapter $activityChapter): self
+    {
+        if ($this->activityChapters->removeElement($activityChapter)) {
+            // set the owning side to null (unless already changed)
+            if ($activityChapter->getActivity() === $this) {
+                $activityChapter->setActivity(null);
+            }
+        }
 
         return $this;
     }
