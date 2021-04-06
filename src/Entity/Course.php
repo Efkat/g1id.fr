@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CourseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,15 +35,25 @@ class Course
     private $Title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=450)
      */
-    private $Content;
+    private $Summary;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="courses")
      * @ORM\JoinColumn(nullable=false)
      */
     private $Category;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CourseChapter::class, mappedBy="Course")
+     */
+    private $courseChapters;
+
+    public function __construct()
+    {
+        $this->courseChapters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -84,14 +96,14 @@ class Course
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getSummary(): ?string
     {
-        return $this->Content;
+        return $this->Summary;
     }
 
-    public function setContent(string $Content): self
+    public function setSummary(string $Summary): self
     {
-        $this->Content = $Content;
+        $this->Summary = $Summary;
 
         return $this;
     }
@@ -104,6 +116,36 @@ class Course
     public function setCategory(?Category $Category): self
     {
         $this->Category = $Category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CourseChapter[]
+     */
+    public function getCourseChapters(): Collection
+    {
+        return $this->courseChapters;
+    }
+
+    public function addCourseChapter(CourseChapter $courseChapter): self
+    {
+        if (!$this->courseChapters->contains($courseChapter)) {
+            $this->courseChapters[] = $courseChapter;
+            $courseChapter->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCourseChapter(CourseChapter $courseChapter): self
+    {
+        if ($this->courseChapters->removeElement($courseChapter)) {
+            // set the owning side to null (unless already changed)
+            if ($courseChapter->getCourse() === $this) {
+                $courseChapter->setCourse(null);
+            }
+        }
 
         return $this;
     }
