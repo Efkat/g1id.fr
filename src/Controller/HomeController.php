@@ -13,9 +13,7 @@ class HomeController extends AbstractController
      */
     public function home(): Response
     {
-        return new Response(
-            '<html lang="fr"><body>Hello</body></html>'
-        );
+        return $this->render('pages/home.html.twig');
     }
 
     public function homeLogged(): Response
