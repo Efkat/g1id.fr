@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -39,6 +41,11 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $Birth;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Name;
 
     public function getId(): ?int
     {
@@ -129,6 +136,18 @@ class User implements UserInterface
     public function setBirth(\DateTimeInterface $Birth): self
     {
         $this->Birth = $Birth;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->Name;
+    }
+
+    public function setName(string $Name): self
+    {
+        $this->Name = $Name;
 
         return $this;
     }
