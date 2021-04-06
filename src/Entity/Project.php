@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,15 +35,25 @@ class Project
     private $Title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=450)
      */
-    private $Content;
+    private $Summary;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
      */
     private $Category;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ProjectChapter::class, mappedBy="Project")
+     */
+    private $projectChapters;
+
+    public function __construct()
+    {
+        $this->projectChapters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -84,14 +96,14 @@ class Project
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getSummary(): ?string
     {
-        return $this->Content;
+        return $this->Summary;
     }
 
-    public function setContent(string $Content): self
+    public function setSummary(string $Summary): self
     {
-        $this->Content = $Content;
+        $this->Summary = $Summary;
 
         return $this;
     }
@@ -104,6 +116,36 @@ class Project
     public function setCategory(?Category $Category): self
     {
         $this->Category = $Category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProjectChapter[]
+     */
+    public function getProjectChapters(): Collection
+    {
+        return $this->projectChapters;
+    }
+
+    public function addProjectChapter(ProjectChapter $projectChapter): self
+    {
+        if (!$this->projectChapters->contains($projectChapter)) {
+            $this->projectChapters[] = $projectChapter;
+            $projectChapter->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectChapter(ProjectChapter $projectChapter): self
+    {
+        if ($this->projectChapters->removeElement($projectChapter)) {
+            // set the owning side to null (unless already changed)
+            if ($projectChapter->getProject() === $this) {
+                $projectChapter->setProject(null);
+            }
+        }
 
         return $this;
     }
