@@ -19,6 +19,15 @@ class CourseRepository extends ServiceEntityRepository
         parent::__construct($registry, Course::class);
     }
 
+
+    public function findLast(){
+        return $this->createQueryBuilder('course')
+            ->orderBy('course.ModifiedAt')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Course[] Returns an array of Course objects
     //  */

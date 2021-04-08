@@ -15,21 +15,12 @@
         <div class="container d-flex w-75 mx-auto flex-wrap justify-content-between">
             <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last lessons -->
                 <h3 class="rounded-pill d-inline-block p-2">Les derniers cours</h3>
-                <section> <!-- Element 1 -->
-                    <h2>Title</h2>
-                    <p>Temps de lecture : </p>
-                    <p>Ajouté le : </p>
-                </section>
-                <section><!-- Element 2 -->
-                    <h2>Title</h2>
-                    <p>Temps de lecture : </p>
-                    <p>Ajouté le : </p>
-                </section>
-                <section><!-- Element 3 -->
-                    <h2>Title</h2>
-                    <p>Temps de lecture : </p>
-                    <p>Ajouté le : </p>
-                </section>
+                {% for course in courses %}
+                    <section>
+                        <h2>{{ course.title }}</h2>
+                        <p>Ajouté le :  {{ course.modifiedAt|date("d/m/Y") }}</p>
+                    </section>
+                {% endfor %}
             </section>
             <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last projects -->
                 <h3 class="rounded-pill d-inline-block p-2">Les derniers projets</h3>
