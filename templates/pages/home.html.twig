@@ -24,21 +24,19 @@
             </section>
             <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last projects -->
                 <h3 class="rounded-pill d-inline-block p-2">Les derniers projets</h3>
-                <section> <!-- Element 1 -->
-                    <h2>Title</h2>
-                    <p>Niveau : </p>
-                    <p>Ajouté le : </p>
-                </section>
-                <section><!-- Element 2 -->
-                    <h2>Title</h2>
-                    <p>Niveau : </p>
-                    <p>Ajouté le : </p>
-                </section>
-                <section><!-- Element 3 -->
-                    <h2>Title</h2>
-                    <p>Niveau : </p>
-                    <p>Ajouté le : </p>
-                </section>
+                {% if projects %}
+                    {% for project in projects %}
+                    <section>
+                        <h2>{{ project.title }}</h2>
+                        <p>Ajouté le :  {{ project.modifiedAt|date("d/m/Y") }}</p>
+                    </section>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        Aucun contenu n'est disponible pour le moment
+                    </div>
+                {% endif  %}
+
             </section>
             <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last activities -->
                 <h3 class="rounded-pill d-inline-block p-2">Les dernières activités</h3>
