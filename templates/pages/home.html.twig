@@ -15,12 +15,18 @@
         <div class="container d-flex w-75 mx-auto flex-wrap justify-content-between">
             <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last lessons -->
                 <h3 class="rounded-pill d-inline-block p-2">Les derniers cours</h3>
-                {% for course in courses %}
-                    <section>
-                        <h2>{{ course.title }}</h2>
-                        <p>Ajouté le :  {{ course.modifiedAt|date("d/m/Y") }}</p>
-                    </section>
-                {% endfor %}
+                {% if courses %}
+                    {% for course in courses %}
+                        <section>
+                            <h2>{{ course.title }}</h2>
+                            <p>Ajouté le :  {{ course.modifiedAt|date("d/m/Y") }}</p>
+                        </section>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        Aucun contenu n'est disponible pour le moment
+                    </div>
+                {% endif  %}
             </section>
             <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last projects -->
                 <h3 class="rounded-pill d-inline-block p-2">Les derniers projets</h3>
@@ -40,39 +46,33 @@
             </section>
             <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last activities -->
                 <h3 class="rounded-pill d-inline-block p-2">Les dernières activités</h3>
-                <section> <!-- Element 1 -->
-                    <h2>Title</h2>
-                    <p>Thême : </p>
-                    <p>Ajouté le : </p>
-                </section>
-                <section><!-- Element 2 -->
-                    <h2>Title</h2>
-                    <p>Thême : </p>
-                    <p>Ajouté le : </p>
-                </section>
-                <section><!-- Element 3 -->
-                    <h2>Title</h2>
-                    <p>Thême : </p>
-                    <p>Ajouté le : </p>
-                </section>
+                {% if activities %}
+                    {% for activity in activities %}
+                        <section>
+                            <h2>{{ activity.title }}</h2>
+                            <p>Ajouté le :  {{ activity.modifiedAt|date("d/m/Y") }}</p>
+                        </section>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        Aucun contenu n'est disponible pour le moment
+                    </div>
+                {% endif  %}
             </section>
             <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last exercises -->
                 <h3 class="rounded-pill d-inline-block p-2">Les derniers exercices</h3>
-                <section> <!-- Element 1 -->
-                    <h2>Title</h2>
-                    <p>Thême : </p>
-                    <p>Ajouté le : </p>
-                </section>
-                <section><!-- Element 2 -->
-                    <h2>Title</h2>
-                    <p>Thême : </p>
-                    <p>Ajouté le : </p>
-                </section>
-                <section><!-- Element 3 -->
-                    <h2>Title</h2>
-                    <p>Thême : </p>
-                    <p>Ajouté le : </p>
-                </section>
+                {% if exercises %}
+                    {% for exercice in exercises %}
+                        <section>
+                            <h2>{{ exercice.title }}</h2>
+                            <p>Ajouté le :  {{ exercice.modifiedAt|date("d/m/Y") }}</p>
+                        </section>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        Aucun contenu n'est disponible pour le moment
+                    </div>
+                {% endif  %}
             </section>
         </div>
     </div>

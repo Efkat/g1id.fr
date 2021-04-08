@@ -20,7 +20,7 @@ class ProjectRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Project[] Return the 3 last courses
+     * @return Project[] Return the 3 last projects
      */
     public function findLast(){
         return $this->createQueryBuilder('project')

@@ -19,6 +19,17 @@ class ExerciceRepository extends ServiceEntityRepository
         parent::__construct($registry, Exercice::class);
     }
 
+    /**
+     * @return Exercice[] Return the 3 last activities
+     */
+    public function findLast(){
+        return $this->createQueryBuilder('exercice')
+            ->orderBy('exercice.ModifiedAt')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Exercice[] Returns an array of Exercice objects
     //  */
