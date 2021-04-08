@@ -1,3 +1,28 @@
-h1{
-  font-weight: 900;
+#main-container{
+  h1{
+    font-weight: 900;
+  }
+  p{
+    font-weight: 500;
+    font-style: italic;
+    color: var(--color-green);
+  }
+}
+
+#actu{
+  background-color: #F1F1F1;
+  object{
+    position: absolute;
+    left: -1000px;
+    top: -200px;
+  }
+
+  .actus-group {
+    border: rgba(0, 0, 0, 0.09) solid 1px;
+  }
+
+  h3{
+    background-color: var(--color-transparent);
+    color: var(--color-dark);
+  }
 }

@@ -3,86 +3,88 @@
 {% block title %} Accueil {% endblock %}
 
 {% block body %}
-    <div id="main-container" class="w-75 mx-auto d-flex flex-row">
-        <section>
+    <div id="main-container" class="w-75 mx-auto d-flex flex-row container">
+        <section class="col-6">
             <h1 class="text-uppercase">Apprenez, où vous voulez quand vous voulez</h1>
             <p>Il est possible d’apprendre grâce à plusieurs formats, des activités, des exercices, des vidéos et des projets pour apprendre tout en pratiquant !</p>
         </section>
-        <object data="/assets/laptopIllustration.svg"></object>
+        <object data="/assets/laptopIllustration.svg"  class="col-6"></object>
     </div>
-    <div>
+    <div id="actu">
         <object data="/assets/Bulb_deco.svg"></object>
-        <section> <!-- Last lessons -->
-            <h3>Les derniers cours</h3>
-            <section> <!-- Element 1 -->
-                <h2>Title</h2>
-                <p>Temps de lecture : </p>
-                <p>Ajouté le : </p>
+        <div class="container d-flex w-75 mx-auto flex-wrap justify-content-between">
+            <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last lessons -->
+                <h3 class="rounded-pill d-inline-block p-2">Les derniers cours</h3>
+                <section> <!-- Element 1 -->
+                    <h2>Title</h2>
+                    <p>Temps de lecture : </p>
+                    <p>Ajouté le : </p>
+                </section>
+                <section><!-- Element 2 -->
+                    <h2>Title</h2>
+                    <p>Temps de lecture : </p>
+                    <p>Ajouté le : </p>
+                </section>
+                <section><!-- Element 3 -->
+                    <h2>Title</h2>
+                    <p>Temps de lecture : </p>
+                    <p>Ajouté le : </p>
+                </section>
             </section>
-            <section><!-- Element 2 -->
-                <h2>Title</h2>
-                <p>Temps de lecture : </p>
-                <p>Ajouté le : </p>
+            <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last projects -->
+                <h3 class="rounded-pill d-inline-block p-2">Les derniers projets</h3>
+                <section> <!-- Element 1 -->
+                    <h2>Title</h2>
+                    <p>Niveau : </p>
+                    <p>Ajouté le : </p>
+                </section>
+                <section><!-- Element 2 -->
+                    <h2>Title</h2>
+                    <p>Niveau : </p>
+                    <p>Ajouté le : </p>
+                </section>
+                <section><!-- Element 3 -->
+                    <h2>Title</h2>
+                    <p>Niveau : </p>
+                    <p>Ajouté le : </p>
+                </section>
             </section>
-            <section><!-- Element 3 -->
-                <h2>Title</h2>
-                <p>Temps de lecture : </p>
-                <p>Ajouté le : </p>
+            <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last activities -->
+                <h3 class="rounded-pill d-inline-block p-2">Les dernières activités</h3>
+                <section> <!-- Element 1 -->
+                    <h2>Title</h2>
+                    <p>Thême : </p>
+                    <p>Ajouté le : </p>
+                </section>
+                <section><!-- Element 2 -->
+                    <h2>Title</h2>
+                    <p>Thême : </p>
+                    <p>Ajouté le : </p>
+                </section>
+                <section><!-- Element 3 -->
+                    <h2>Title</h2>
+                    <p>Thême : </p>
+                    <p>Ajouté le : </p>
+                </section>
             </section>
-        </section>
-        <section> <!-- Last projects -->
-            <h3>Les derniers projets</h3>
-            <section> <!-- Element 1 -->
-                <h2>Title</h2>
-                <p>Niveau : </p>
-                <p>Ajouté le : </p>
+            <section class="actus-group col-5 rounded border border-1 my-5"> <!-- Last exercises -->
+                <h3 class="rounded-pill d-inline-block p-2">Les derniers exercices</h3>
+                <section> <!-- Element 1 -->
+                    <h2>Title</h2>
+                    <p>Thême : </p>
+                    <p>Ajouté le : </p>
+                </section>
+                <section><!-- Element 2 -->
+                    <h2>Title</h2>
+                    <p>Thême : </p>
+                    <p>Ajouté le : </p>
+                </section>
+                <section><!-- Element 3 -->
+                    <h2>Title</h2>
+                    <p>Thême : </p>
+                    <p>Ajouté le : </p>
+                </section>
             </section>
-            <section><!-- Element 2 -->
-                <h2>Title</h2>
-                <p>Niveau : </p>
-                <p>Ajouté le : </p>
-            </section>
-            <section><!-- Element 3 -->
-                <h2>Title</h2>
-                <p>Niveau : </p>
-                <p>Ajouté le : </p>
-            </section>
-        </section>
-        <section> <!-- Last activities -->
-            <h3>Les dernières activités</h3>
-            <section> <!-- Element 1 -->
-                <h2>Title</h2>
-                <p>Thême : </p>
-                <p>Ajouté le : </p>
-            </section>
-            <section><!-- Element 2 -->
-                <h2>Title</h2>
-                <p>Thême : </p>
-                <p>Ajouté le : </p>
-            </section>
-            <section><!-- Element 3 -->
-                <h2>Title</h2>
-                <p>Thême : </p>
-                <p>Ajouté le : </p>
-            </section>
-        </section>
-        <section> <!-- Last exercises -->
-            <h3>Les derniers exercices</h3>
-            <section> <!-- Element 1 -->
-                <h2>Title</h2>
-                <p>Thême : </p>
-                <p>Ajouté le : </p>
-            </section>
-            <section><!-- Element 2 -->
-                <h2>Title</h2>
-                <p>Thême : </p>
-                <p>Ajouté le : </p>
-            </section>
-            <section><!-- Element 3 -->
-                <h2>Title</h2>
-                <p>Thême : </p>
-                <p>Ajouté le : </p>
-            </section>
-        </section>
+        </div>
     </div>
 {% endblock %}
