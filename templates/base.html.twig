@@ -16,25 +16,33 @@
         {% endblock %}
     </head>
     <body>
-        <header class="d-flex flex-row justify-content-between align-items-center">
-            <object data="/assets/Logo.svg"></object>
-            <nav>
-                <ul class="navbar-nav d-flex flex-row">
-                    <li><a href="#">Cours</a></li>
-                    <li><a href="#">Activité</a></li>
-                    <li><a href="#">Exercice</a></li>
-                    <li><a href="#">Projets</a></li>
-                </ul>
-            </nav>
-            <div class="d-flex flex-row">
-                {% if app.user %}
-                    <p>Bonjour {{ app.user.username }},</p>
-                {% else %}
-                    <p><a href="/login">Connexion</a></p>
-                    <p>|</p>
-                    <p><a href="/register">Inscription</a></p>
-                {% endif %}
+        <header class="">
+            <div class="d-flex flex-row justify-content-between align-items-center container">
+                <object class="col-3" data="/assets/Logo.svg"></object>
+                <nav class="col-3">
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="mx-2"><a href="{{ path('course_list') }}">Cours</a></li>
+                        <li class="mx-2"><a href="{{ path('activity_list') }}">Activité</a></li>
+                        <li class="mx-2"><a href="#">Exercice</a></li>
+                        <li class="mx-2"><a href="#">Projets</a></li>
+                    </ul>
+                </nav>
+                <div class="d-flex flex-row col-3">
+                    {% if app.user %}
+                        <p>Bonjour {{ app.user.username }},</p>
+                    {% else %}
+                        <p><a href="{{ path('app_login') }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>Connexion</a></p>
+                        <p>|</p>
+                        <p><a href="{{ path('app_register') }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                </svg>Inscription</a></p>
+                    {% endif %}
+                </div>
             </div>
+
         </header>
         <main>
             {% block body %}

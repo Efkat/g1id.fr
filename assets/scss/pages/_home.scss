@@ -11,14 +11,15 @@
 
 #actu{
   background-color: #F1F1F1;
-  object{
-    position: absolute;
-    left: -1000px;
-    top: -200px;
-  }
+  overflow: hidden;
 
+  img{
+    position: absolute;
+    left: -50%;
+  }
   .actus-group {
     border: rgba(0, 0, 0, 0.09) solid 1px;
+    z-index: 999;
   }
 
   h3{

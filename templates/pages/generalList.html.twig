@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cours{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Tous les {{ contentName }}</h1>
+    {% if contents %}
+        {% for content in contents %}
+            <div class="card shadow" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ content.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ content.category.name }}</h6>
+                    <p class="card-text">{{ content.summary }}</p>
+                    <p class="card-text text-secondary">Ajouté le {{ content.createdAt|date("d/m/Y") }}</p>
+                    <p class="card-text text-secondary">Difficulté : </p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-warning text-center" role="alert">
+            Aucun contenu n'est disponible pour le moment
+        </div>
+    {% endif %}
+{% endblock %}
