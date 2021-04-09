@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cours{% endblock %}
+{% block title %}{{ contentName|capitalize }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Tous les {{ contentName }}</h1>
+    <h1 class="text-center">
+        {% if contentName == "activités" %}
+            Toutes les {{ contentName }}
+        {% else %}
+            Tous les {{ contentName }}
+        {% endif %}
+    </h1>
     {% if contents %}
         {% for content in contents %}
             <div class="card shadow" style="width: 18rem;">
