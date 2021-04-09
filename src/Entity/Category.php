@@ -188,4 +188,12 @@ class Category
 
         return $this;
     }
+
+    /**
+     * @return String
+     */
+    public function __toString() : String
+    {
+        return $this->getName();
+    }
 }

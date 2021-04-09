@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ExerciceRepository;
+use App\Entity\Category;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -130,15 +131,21 @@ class Exercice
         return $this;
     }
 
+
     public function getCategory(): ?Category
     {
         return $this->Category;
     }
 
-    public function setCategory(?Category $Category): self
+    public function setCategory(Category $Category): self
     {
         $this->Category = $Category;
 
         return $this;
+    }
+
+    public function __toString() :String
+    {
+        return $this->getTitle();
     }
 }
