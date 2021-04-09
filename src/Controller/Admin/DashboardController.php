@@ -6,6 +6,8 @@ use App\Entity\Activity;
 use App\Entity\ActivityChapter;
 use App\Entity\Category;
 use App\Entity\Exercice;
+use App\Entity\Project;
+use App\Entity\ProjectChapter;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -40,6 +42,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud("Exercice",'fa fa-pencil-ruler', Exercice::class);
         yield MenuItem::linkToCrud("Activités", 'fa fa-puzzle-piece', Activity::class);
         yield MenuItem::linkToCrud("Activités-Chapitre", 'fa fa-puzzle-piece', ActivityChapter::class);
+        yield MenuItem::linkToCrud("Projets", 'fa fa-tools', Project::class);
+        yield MenuItem::linkToCrud("Projets-Chapitre", 'fa fa-tools', ProjectChapter::class);
 
         yield MenuItem::section("Others", 'fa fa-globe');
         yield MenuItem::linkToCrud("Catégories", 'fa fa-bookmark', Category::class);

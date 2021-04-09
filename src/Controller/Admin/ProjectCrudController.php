@@ -2,26 +2,26 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\ActivityChapter;
+use App\Entity\Project;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-
-class ActivityChapterCrudController extends AbstractCrudController
+class ProjectCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return ActivityChapter::class;
+        return Project::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('Title'),
-            TextField::new('Content'),
-            AssociationField::new('Activity')
+            TextField::new('title', 'Titre'),
+            TextField::new('summary', 'Résumé'),
+            AssociationField::new("Category", 'Catégorie'),
+            DateTimeField::new('createdAt')
         ];
     }
 }

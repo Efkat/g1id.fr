@@ -33,11 +33,6 @@ class ProjectChapter
      */
     private $Project;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $CreatedAt;
-
     public function getId(): ?int
     {
         return $this->id;
