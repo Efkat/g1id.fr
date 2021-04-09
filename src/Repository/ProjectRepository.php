@@ -24,7 +24,7 @@ class ProjectRepository extends ServiceEntityRepository
      */
     public function findLast(){
         return $this->createQueryBuilder('project')
-            ->orderBy('project.ModifiedAt')
+            ->orderBy('project.CreatedAt')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();

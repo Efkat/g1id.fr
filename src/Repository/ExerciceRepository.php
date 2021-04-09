@@ -24,7 +24,7 @@ class ExerciceRepository extends ServiceEntityRepository
      */
     public function findLast(){
         return $this->createQueryBuilder('exercice')
-            ->orderBy('exercice.ModifiedAt')
+            ->orderBy('exercice.CreatedAt')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();

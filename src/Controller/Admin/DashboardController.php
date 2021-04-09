@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Activity;
+use App\Entity\ActivityChapter;
 use App\Entity\Category;
 use App\Entity\Exercice;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -34,17 +36,12 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
 
-        yield MenuItem::section("Activités", 'fa fa-keyboard');
-
-        yield MenuItem::section("Cours", 'fa fa-book');
-
-        yield MenuItem::section("Projets", 'fa fa-project-diagram');
-
-        yield MenuItem::section("Exercices", 'fa fa-pencil-ruler');
+        yield MenuItem::section("Main", 'fa fa-pen-alt');
         yield MenuItem::linkToCrud("Exercice",'fa fa-pencil-ruler', Exercice::class);
+        yield MenuItem::linkToCrud("Activités", 'fa fa-puzzle-piece', Activity::class);
+        yield MenuItem::linkToCrud("Activités-Chapitre", 'fa fa-puzzle-piece', ActivityChapter::class);
 
-        yield MenuItem::section("Général", 'fa fa-globe');
+        yield MenuItem::section("Others", 'fa fa-globe');
         yield MenuItem::linkToCrud("Catégories", 'fa fa-bookmark', Category::class);
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

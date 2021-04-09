@@ -24,7 +24,7 @@ class CourseRepository extends ServiceEntityRepository
      */
     public function findLast(){
         return $this->createQueryBuilder('course')
-            ->orderBy('course.ModifiedAt')
+            ->orderBy('course.CreatedAt')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();

@@ -19,7 +19,7 @@
                     {% for course in courses %}
                         <section>
                             <h2>{{ course.title }}</h2>
-                            <p>Ajouté le :  {{ course.modifiedAt|date("d/m/Y") }}</p>
+                            <p>Ajouté le :  {{ course.createdAt|date("d/m/Y") }}</p>
                         </section>
                     {% endfor %}
                 {% else %}
@@ -34,7 +34,7 @@
                     {% for project in projects %}
                     <section>
                         <h2>{{ project.title }}</h2>
-                        <p>Ajouté le :  {{ project.modifiedAt|date("d/m/Y") }}</p>
+                        <p>Ajouté le :  {{ project.createdAt|date("d/m/Y") }}</p>
                     </section>
                     {% endfor %}
                 {% else %}
@@ -50,7 +50,7 @@
                     {% for activity in activities %}
                         <section>
                             <h2>{{ activity.title }}</h2>
-                            <p>Ajouté le :  {{ activity.modifiedAt|date("d/m/Y") }}</p>
+                            <p>Ajouté le :  {{ activity.createdAt|date("d/m/Y") }}</p>
                         </section>
                     {% endfor %}
                 {% else %}
@@ -65,7 +65,7 @@
                     {% for exercice in exercises %}
                         <section>
                             <h2>{{ exercice.title }}</h2>
-                            <p>Ajouté le :  {{ exercice.modifiedAt|date("d/m/Y") }}</p>
+                            <p>Ajouté le :  {{ exercice.createdAt|date("d/m/Y") }}</p>
                         </section>
                     {% endfor %}
                 {% else %}
