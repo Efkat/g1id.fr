@@ -24,11 +24,6 @@ class Exercice
     private $CreatedAt;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $ModifiedAt;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $Title;
@@ -67,18 +62,6 @@ class Exercice
     public function setCreatedAt(\DateTimeInterface $CreatedAt): self
     {
         $this->CreatedAt = $CreatedAt;
-
-        return $this;
-    }
-
-    public function getModifiedAt(): ?\DateTimeInterface
-    {
-        return $this->ModifiedAt;
-    }
-
-    public function setModifiedAt(\DateTimeInterface $ModifiedAt): self
-    {
-        $this->ModifiedAt = $ModifiedAt;
 
         return $this;
     }

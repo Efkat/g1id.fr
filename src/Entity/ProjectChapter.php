@@ -38,11 +38,6 @@ class ProjectChapter
      */
     private $CreatedAt;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $ModifiedAt;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -80,30 +75,6 @@ class ProjectChapter
     public function setProject(?Project $Project): self
     {
         $this->Project = $Project;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->CreatedAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
-    {
-        $this->CreatedAt = $CreatedAt;
-
-        return $this;
-    }
-
-    public function getModifiedAt(): ?\DateTimeInterface
-    {
-        return $this->ModifiedAt;
-    }
-
-    public function setModifiedAt(\DateTimeInterface $ModifiedAt): self
-    {
-        $this->ModifiedAt = $ModifiedAt;
 
         return $this;
     }

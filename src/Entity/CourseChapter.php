@@ -28,16 +28,6 @@ class CourseChapter
     private $Content;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $CreatedAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $ModifiedAt;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="courseChapters")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -68,30 +58,6 @@ class CourseChapter
     public function setContent(string $Content): self
     {
         $this->Content = $Content;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->CreatedAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
-    {
-        $this->CreatedAt = $CreatedAt;
-
-        return $this;
-    }
-
-    public function getModifiedAt(): ?\DateTimeInterface
-    {
-        return $this->ModifiedAt;
-    }
-
-    public function setModifiedAt(\DateTimeInterface $ModifiedAt): self
-    {
-        $this->ModifiedAt = $ModifiedAt;
 
         return $this;
     }
