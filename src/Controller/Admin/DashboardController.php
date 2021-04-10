@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Activity;
 use App\Entity\ActivityChapter;
 use App\Entity\Category;
+use App\Entity\Course;
+use App\Entity\CourseChapter;
 use App\Entity\Exercice;
 use App\Entity\Project;
 use App\Entity\ProjectChapter;
@@ -44,6 +46,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud("Activités-Chapitre", 'fa fa-puzzle-piece', ActivityChapter::class);
         yield MenuItem::linkToCrud("Projets", 'fa fa-tools', Project::class);
         yield MenuItem::linkToCrud("Projets-Chapitre", 'fa fa-tools', ProjectChapter::class);
+        yield MenuItem::linkToCrud("Cours","fa fa-book",Course::class);
+        yield MenuItem::linkToCrud("Cours-Chapitre","fa fa-book",CourseChapter::class);
 
         yield MenuItem::section("Others", 'fa fa-globe');
         yield MenuItem::linkToCrud("Catégories", 'fa fa-bookmark', Category::class);

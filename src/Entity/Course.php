@@ -132,4 +132,9 @@ class Course
 
         return $this;
     }
+
+    public function __toString():String
+    {
+        return $this->getTitle();
+    }
 }
