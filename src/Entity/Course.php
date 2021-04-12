@@ -6,6 +6,7 @@ use App\Repository\CourseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=CourseRepository::class)
@@ -39,6 +40,13 @@ class Course
      * @ORM\JoinColumn(nullable=false)
      */
     private $Category;
+
+    /**
+     * @ORM\Column (type="string", length=255)
+     *
+     * @Gedmo\Slug(fields={"Title"})
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity=CourseChapter::class, mappedBy="Course")
@@ -102,6 +110,18 @@ class Course
         $this->Category = $Category;
 
         return $this;
+    }
+
+    public function setSlug(string $slug) : self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getSlug() : string
+    {
+        return $this->slug;
     }
 
     /**

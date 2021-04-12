@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CourseController extends AbstractController
 {
     /**
-     * @Route("/course", name="course_list")
+     * @Route("/course", name="course_list", methods={"GET"})
      */
     public function index(): Response
     {
@@ -20,6 +20,18 @@ class CourseController extends AbstractController
         return $this->render('pages/generalList.html.twig', [
             'contentName' => 'cours',
             'contents' => $courseRepository->findAll()
+        ]);
+    }
+
+    /**
+     * @Route("/course/{slug}", name="course_post_show", methods={"GET"})
+     * @param Course $course
+     * @return Response
+     */
+    public function show(Course $course): Response
+    {
+        return $this->render("pages/showCourse.html.twig", [
+            "course" => $course
         ]);
     }
 }
