@@ -22,7 +22,6 @@ class ExerciceCrudController extends AbstractCrudController
             TextField::new('Content', 'Enoncé'),
             TextField::new('Help', 'Aide'),
             TextField::new('Correction', 'Correction'),
-            DateTimeField::new('createdAt'),
             AssociationField::new('Category', 'Catégories')
         ];
     }

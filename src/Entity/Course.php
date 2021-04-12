@@ -48,6 +48,7 @@ class Course
     public function __construct()
     {
         $this->courseChapters = new ArrayCollection();
+        $this->CreatedAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -62,7 +63,7 @@ class Course
 
     public function setCreatedAt(\DateTimeInterface $CreatedAt): self
     {
-        $this->CreatedAt = $CreatedAt;
+        $this->CreatedAt = new \DateTimeImmutable();
 
         return $this;
     }

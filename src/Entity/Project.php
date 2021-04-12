@@ -48,6 +48,7 @@ class Project
     public function __construct()
     {
         $this->projectChapters = new ArrayCollection();
+        $this->CreatedAt = new \DateTime();
     }
 
     public function getId(): ?int

@@ -49,6 +49,11 @@ class Exercice
      */
     private $Category;
 
+    public function __construct()
+    {
+        $this->CreatedAt = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

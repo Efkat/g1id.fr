@@ -24,7 +24,7 @@ class ActivityRepository extends ServiceEntityRepository
      */
     public function findLast(){
         return $this->createQueryBuilder('activity')
-            ->orderBy('activity.CreatedAt')
+            ->orderBy('activity.CreatedAt', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();

@@ -20,8 +20,7 @@ class ProjectCrudController extends AbstractCrudController
         return [
             TextField::new('title', 'Titre'),
             TextField::new('summary', 'Résumé'),
-            AssociationField::new("Category", 'Catégorie'),
-            DateTimeField::new('createdAt')
+            AssociationField::new("Category", 'Catégorie')
         ];
     }
 }
