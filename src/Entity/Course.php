@@ -119,7 +119,7 @@ class Course
         return $this;
     }
 
-    public function getSlug() : string
+    public function getSlug() : ?string
     {
         return $this->slug;
     }

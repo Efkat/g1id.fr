@@ -30,8 +30,10 @@ class CourseController extends AbstractController
      */
     public function show(Course $course): Response
     {
+        $chapters = $course->getCourseChapters();
         return $this->render("pages/showCourse.html.twig", [
-            "course" => $course
+            "course" => $course,
+            "chapters" => $chapters
         ]);
     }
 }
