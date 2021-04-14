@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ activity.Title }} {% endblock %}
+{% block body %}
+    <p>Cours > {{ activity.category }} > {{ activity.Title }} </p>
+    <h1 style="text-align: center">{{ activity.title }}</h1>
+    <p>{{ activity.summary }}</p>
+    {% if chapters is empty %}
+        <div class="alert alert-warning" role="alert">
+            Aucun chapitre n'est disponible, reviens plus tard...
+        </div>
+    {% else %}
+        <div style="border: 1px solid black; display: inline-block">
+            <ul>
+                {% for chapter in chapters %}
+                    <li>{{ chapter.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="border: 1px solid red">
+            <h2>{{ chapters[0].title }}</h2>
+            <p>{{ chapters[0].content }}</p>
+        </div>
+    {% endif %}
+{% endblock %}
