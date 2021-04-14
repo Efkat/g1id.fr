@@ -6,6 +6,7 @@ use App\Repository\ActivityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ActivityRepository::class)
@@ -44,6 +45,15 @@ class Activity
      * @ORM\OneToMany(targetEntity=ActivityChapter::class, mappedBy="Activity")
      */
     private $activityChapters;
+
+    /**
+     * @ORM\Column (type="string", length=255)
+     *
+     * @Gedmo\Slug(fields={"Title"})
+     */
+    private $slug;
+
+
 
     public function __construct()
     {
@@ -102,6 +112,18 @@ class Activity
         $this->Category = $Category;
 
         return $this;
+    }
+
+    public function setSlug(string $slug) : self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getSlug() : ?string
+    {
+        return $this->slug;
     }
 
     /**

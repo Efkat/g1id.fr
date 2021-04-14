@@ -21,8 +21,7 @@ class CourseCrudController extends AbstractCrudController
         return [
             TextField::new('title','Titre'),
             TextField::new('summary','Résumé'),
-            AssociationField::new('Category','Catégorie'),
-            TextField::new('slug', 'Slug')
+            AssociationField::new('Category','Catégorie')
         ];
     }
 

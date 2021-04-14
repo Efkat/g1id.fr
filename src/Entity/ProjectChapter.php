@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProjectChapterRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectChapterRepository::class)
@@ -32,6 +33,13 @@ class ProjectChapter
      * @ORM\JoinColumn(nullable=false)
      */
     private $Project;
+
+    /**
+     * @ORM\Column (type="string", length=255)
+     *
+     * @Gedmo\Slug(fields={"Title"})
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -72,5 +80,17 @@ class ProjectChapter
         $this->Project = $Project;
 
         return $this;
+    }
+
+    public function setSlug(string $slug) : self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getSlug() : ?string
+    {
+        return $this->slug;
     }
 }

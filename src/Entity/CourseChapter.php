@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CourseChapterRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=CourseChapterRepository::class)
@@ -32,6 +33,12 @@ class CourseChapter
      * @ORM\JoinColumn(nullable=false)
      */
     private $Course;
+    /**
+     * @ORM\Column (type="string", length=255)
+     *
+     * @Gedmo\Slug(fields={"Title"})
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -73,4 +80,16 @@ class CourseChapter
 
         return $this;
     }
+    public function setSlug(string $slug) : self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getSlug() : ?string
+    {
+        return $this->slug;
+    }
+
 }

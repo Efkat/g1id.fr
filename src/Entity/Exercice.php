@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ExerciceRepository;
 use App\Entity\Category;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ExerciceRepository::class)
@@ -48,6 +49,13 @@ class Exercice
      * @ORM\JoinColumn(nullable=false)
      */
     private $Category;
+
+    /**
+     * @ORM\Column (type="string", length=255)
+     *
+     * @Gedmo\Slug(fields={"Title"})
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -130,6 +138,18 @@ class Exercice
         $this->Category = $Category;
 
         return $this;
+    }
+
+    public function setSlug(string $slug) : self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getSlug() : ?string
+    {
+        return $this->slug;
     }
 
     public function __toString() :String
