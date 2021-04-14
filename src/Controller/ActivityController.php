@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActivityController extends AbstractController
 {
     /**
-     * @Route("/activity", name="activity_list")
+     * @Route("/activites", name="activity_list")
      */
     public function index(): Response
     {

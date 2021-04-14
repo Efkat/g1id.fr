@@ -14,7 +14,7 @@
         {% for content in contents %}
             <div class="card shadow" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ content.title }}</h5>
+                    <h5 class="card-title"><a href="{{ contentName|replace({"é": "e"}) }}/{{ content.slug }}">{{ content.title }}</a></h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{ content.category.name }}</h6>
                     <p class="card-text">{{ content.summary }}</p>
                     <p class="card-text text-secondary">Ajouté le {{ content.createdAt|date("d/m/Y") }}</p>

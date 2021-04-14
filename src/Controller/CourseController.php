@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CourseController extends AbstractController
 {
     /**
-     * @Route("/course", name="course_list", methods={"GET"})
+     * @Route("/cours", name="course_list", methods={"GET"})
      */
     public function index(): Response
     {
@@ -24,7 +24,7 @@ class CourseController extends AbstractController
     }
 
     /**
-     * @Route("/course/{slug}", name="course_post_show", methods={"GET"})
+     * @Route("/cours/{slug}", name="course_post_show", methods={"GET"})
      * @param Course $course
      * @return Response
      */
