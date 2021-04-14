@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectController extends AbstractController
 {
     /**
-     * @Route("/project", name="project_list")
+     * @Route("/projets", name="project_list")
      */
     public function index(): Response
     {
@@ -20,6 +20,19 @@ class ProjectController extends AbstractController
         return $this->render('pages/generalList.html.twig', [
             'contentName' => 'projets',
             'contents' => $projectRepository->findAll()
+        ]);
+    }
+
+    /**
+     * @Route("/projets/{slug}", name="project_post_show", methods={"GET"})
+     * @param Project $project
+     * @return Response
+     */
+    public function show(Project $project):Response
+    {
+        return $this->render("pages/showProject.html.twig",[
+            "project" => $project,
+            "chapters" => $project->getProjectChapters()
         ]);
     }
 }

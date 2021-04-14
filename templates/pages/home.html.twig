@@ -18,7 +18,7 @@
                 {% if courses %}
                     {% for course in courses %}
                         <section>
-                            <h2><a href="/course/{{ course.slug }}">{{ course.title }}</a></h2>
+                            <h2><a href="{{ path('course_post_show', {'slug': course.slug}, relative = false) }}">{{ course.title }}</a></h2>
                             <p>Ajouté le :  {{ course.createdAt|date("d/m/Y") }}</p>
                         </section>
                     {% endfor %}
@@ -33,7 +33,7 @@
                 {% if projects %}
                     {% for project in projects %}
                     <section>
-                        <h2>{{ project.title }}</h2>
+                        <h2><a href="{{ path('project_post_show', {'slug': project.slug}, relative = false) }}">{{ project.title }}</a></h2>
                         <p>Ajouté le :  {{ project.createdAt|date("d/m/Y") }}</p>
                     </section>
                     {% endfor %}
@@ -49,7 +49,7 @@
                 {% if activities %}
                     {% for activity in activities %}
                         <section>
-                            <h2>{{ activity.title }}</h2>
+                            <h2><a href="{{ path('activity_post_show', {'slug': activity.slug}, relative = false) }}">{{ activity.title }}</a></h2>
                             <p>Ajouté le :  {{ activity.createdAt|date("d/m/Y") }}</p>
                         </section>
                     {% endfor %}
@@ -64,7 +64,7 @@
                 {% if exercises %}
                     {% for exercice in exercises %}
                         <section>
-                            <h2>{{ exercice.title }}</h2>
+                            <h2><a href="">{{ exercice.title }}</a></h2>
                             <p>Ajouté le :  {{ exercice.createdAt|date("d/m/Y") }}</p>
                         </section>
                     {% endfor %}
