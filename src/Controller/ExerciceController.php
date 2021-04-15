@@ -17,9 +17,8 @@ class ExerciceController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $exerciceRepository = $entityManager->getRepository(Exercice::class);
 
-        return $this->render('pages/generalList.html.twig', [
-            'contentName' => "exercices",
-            'contents' => $exerciceRepository->findAll()
+        return $this->render('pages/exerciceList.html.twig', [
+            'exercices' => $exerciceRepository->findAll()
         ]);
     }
 }

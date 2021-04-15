@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Exercices{% endblock %}
+{% block body %}
+    {% for exercice in exercices %}
+        <div class="card m-3">
+            <div class="card-header">
+                <p>{{ exercice.category }} | Ajouté le {{ exercice.createdAt|date('d/m/Y') }}</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ exercice.title }}</h5>
+                <p class="card-text">{{ exercice.content }}.</p>
+                <a href="#" class="btn btn-primary">Faire l'exercice</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
