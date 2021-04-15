@@ -41,6 +41,11 @@ class ProjectChapter
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $time;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,5 +97,17 @@ class ProjectChapter
     public function getSlug() : ?string
     {
         return $this->slug;
+    }
+
+    public function getTime(): ?int
+    {
+        return $this->time;
+    }
+
+    public function setTime(int $time): self
+    {
+        $this->time = $time;
+
+        return $this;
     }
 }

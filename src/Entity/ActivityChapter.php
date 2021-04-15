@@ -33,6 +33,11 @@ class ActivityChapter
      */
     private $Activity;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $time;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +75,18 @@ class ActivityChapter
     public function setActivity(?Activity $Activity): self
     {
         $this->Activity = $Activity;
+
+        return $this;
+    }
+
+    public function getTime(): ?int
+    {
+        return $this->time;
+    }
+
+    public function setTime(int $time): self
+    {
+        $this->time = $time;
 
         return $this;
     }

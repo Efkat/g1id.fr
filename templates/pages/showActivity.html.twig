@@ -18,7 +18,7 @@
         </div>
         <div style="border: 1px solid red">
             <h2>{{ chapters[0].title }}</h2>
-            <p>{{ chapters[0].content }}</p>
+            <p>{{ chapters[0].content|markdown_to_html }}</p>
         </div>
     {% endif %}
 {% endblock %}
