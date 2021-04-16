@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 {% block title %}Exercices{% endblock %}
 {% block body %}
-    {% for exercice in exercices %}
-        <div class="card m-3">
-            <div class="card-header">
-                <p>{{ exercice.category }} | Ajouté le {{ exercice.createdAt|date('d/m/Y') }}</p>
+    <div class="d-flex container flex-wrap flex-row justify-content-around">
+        {% for exercice in exercices %}
+            <div class="card col-4 m-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ exercice.title }} - {% for i in 0..exercice.difficulty %}
+                            {% if i != 0 %}
+                                ⭐
+                            {% endif %}
+                        {% endfor %}</h5>
+                    <h6>Ajouté le {{ exercice.createdAt|date('d/m/Y') }}</h6>
+                    <p class="card-text">{{ exercice.content }}.</p>
+                    <a href="#" class="btn btn-primary">Faire l'exercice</a>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ exercice.title }}</h5>
-                <p class="card-text">{{ exercice.content }}.</p>
-                <a href="#" class="btn btn-primary">Faire l'exercice</a>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}

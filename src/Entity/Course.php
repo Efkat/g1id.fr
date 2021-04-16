@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CourseRepository::class)
@@ -52,6 +53,16 @@ class Course
      * @ORM\OneToMany(targetEntity=CourseChapter::class, mappedBy="Course")
      */
     private $courseChapters;
+
+    /**
+     * @ORM\Column(type="smallint")
+     * @Assert\Range(
+     *     min=1,
+     *     max=5,
+     *     notInRangeMessage="La note de difficulté doit être comprise dans [1;5]"
+     * )
+     */
+    private $Difficulty;
 
     public function __construct()
     {
@@ -157,5 +168,17 @@ class Course
     public function __toString():String
     {
         return $this->getTitle();
+    }
+
+    public function getDifficulty(): ?int
+    {
+        return $this->Difficulty;
+    }
+
+    public function setDifficulty(int $Difficulty): self
+    {
+        $this->Difficulty = $Difficulty;
+
+        return $this;
     }
 }

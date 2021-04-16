@@ -11,17 +11,25 @@
         {% endif %}
     </h1>
     {% if contents %}
-        {% for content in contents %}
-            <div class="card shadow" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="{{ contentName|replace({"é": "e"}) }}/{{ content.slug }}">{{ content.title }}</a></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ content.category.name }}</h6>
-                    <p class="card-text">{{ content.summary }}</p>
-                    <p class="card-text text-secondary">Ajouté le {{ content.createdAt|date("d/m/Y") }}</p>
-                    <p class="card-text text-secondary">Difficulté : </p>
+        <div id="list" class="d-flex flex-row flex-wrap container justify-content-around">
+            {% for content in contents %}
+                <div id="card h100 col-1" class="card shadow my-5" style="width: 18rem;">
+                    <div class="card-body ">
+                        <h5 class="card-title"><a href="{{ contentName|replace({"é": "e"}) }}/{{ content.slug }}">{{ content.title }}</a></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ content.category.name }}</h6>
+                        <p class="card-text summary ">{{ content.summary }}</p>
+                        <p class="card-text text-secondary">Ajouté le {{ content.createdAt|date("d/m/Y") }}</p>
+                        <p class="card-text text-secondary">Difficulté :
+                            {% for i in 0..content.difficulty %}
+                                {% if i != 0 %}
+                                    ⭐
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     {% else %}
         <div class="alert alert-warning text-center" role="alert">
             Aucun contenu n'est disponible pour le moment
