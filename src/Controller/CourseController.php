@@ -31,9 +31,16 @@ class CourseController extends AbstractController
     public function show(Course $course): Response
     {
         $chapters = $course->getCourseChapters();
+        $timer = 0;
+        foreach ($chapters as $chapter){
+            echo $chapter->getTime();
+            $timer += (int)$chapter->getTime();
+        }
+
         return $this->render("pages/showCourse.html.twig", [
             "course" => $course,
-            "chapters" => $chapters
+            "chapters" => $chapters,
+            "time" => $timer
         ]);
     }
 }

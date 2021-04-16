@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\CourseChapter;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class CourseChapterCrudController extends AbstractCrudController
@@ -20,7 +21,8 @@ class CourseChapterCrudController extends AbstractCrudController
         return [
             TextField::new('title','Titre'),
             TextField::new('content','Contenu'),
-            AssociationField::new('Course','Cours')
+            AssociationField::new('Course','Cours'),
+            IntegerField::new('Time', 'Temps estimé')
         ];
     }
 
