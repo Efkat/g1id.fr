@@ -3,6 +3,7 @@
 {% block body %}
     <p>Activités > {{ activity.category }} > {{ activity.Title }} </p>
     <h1 style="text-align: center">{{ activity.title }}</h1>
+    <p>Temps estimé : {{ time }} minutes</p>
     <p>{{ activity.summary }}</p>
     {% if chapters is empty %}
         <div class="alert alert-warning" role="alert">

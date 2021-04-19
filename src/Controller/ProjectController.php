@@ -30,9 +30,16 @@ class ProjectController extends AbstractController
      */
     public function show(Project $project):Response
     {
+        $chapters = $project->getProjectChapters();
+        $timer = 0;
+        foreach ($chapters as $chapter){
+            echo $chapter->getTime();
+            $timer += (int)$chapter->getTime();
+        }
         return $this->render("pages/showProject.html.twig",[
             "project" => $project,
-            "chapters" => $project->getProjectChapters()
+            "chapters" => $chapters,
+            "time" => $timer
         ]);
     }
 }

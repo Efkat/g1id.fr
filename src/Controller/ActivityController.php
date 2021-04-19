@@ -32,10 +32,16 @@ class ActivityController extends AbstractController
     public function show(Activity $activity): Response
     {
         $chapters = $activity->getActivityChapters();
+        $timer = 0;
+        foreach ($chapters as $chapter){
+            echo $chapter->getTime();
+            $timer += (int)$chapter->getTime();
+        }
 
         return $this->render("pages/showActivity.html.twig",[
             "activity" => $activity,
-            "chapters" => $chapters
+            "chapters" => $chapters,
+            "time" => $timer
         ]);
     }
 }
