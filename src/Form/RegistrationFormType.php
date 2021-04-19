@@ -21,7 +21,9 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email')
             ->add('name')
-            ->add('birth', DateType::class)
+            ->add('birth', DateType::class,[
+                'widget' => 'single_text'
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
