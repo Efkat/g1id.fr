@@ -6,6 +6,7 @@ use App\Entity\ActivityChapter;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 
@@ -20,7 +21,7 @@ class ActivityChapterCrudController extends AbstractCrudController
     {
         return [
             TextField::new('Title', 'Titre'),
-            TextField::new('Content', 'Contenu'),
+            TextareaField::new('Content', 'Contenu'),
             AssociationField::new('Activity', 'Activité'),
             IntegerField::new('Time', 'Temps estimé')
         ];

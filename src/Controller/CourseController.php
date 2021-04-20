@@ -33,7 +33,6 @@ class CourseController extends AbstractController
         $chapters = $course->getCourseChapters();
         $timer = 0;
         foreach ($chapters as $chapter){
-            echo $chapter->getTime();
             $timer += (int)$chapter->getTime();
         }
 

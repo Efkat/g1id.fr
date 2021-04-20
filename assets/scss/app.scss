@@ -8,6 +8,8 @@
 @import "pages/home";
 @import "pages/general";
 @import "pages/auth";
+@import "pages/showContent";
+
 :root{
   --color: #6147FF;
   --color-transparent: rgba(97, 71, 255,0.7);
@@ -21,5 +23,7 @@ body{
   font-family: $font;
   color: var(--color);
 }
+
+$enable-responsive-font-sizes: true;
 
 

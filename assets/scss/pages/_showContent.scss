@@ -1,0 +1,53 @@
+.redirect{
+  color: #000;
+}
+.content-title{
+  color: #000;
+  font-weight: 600;
+  font-size: 6em;
+}
+.intro-container{
+  li{
+    color: #000;
+  }
+  aside{
+    width: 20%;
+    section h3{
+      color: #269372;
+    }
+  }
+  .resume{
+    width: 50%;
+    h3{
+      font-weight: bold;
+    }
+    p{
+      font-size: larger;
+    }
+  }
+}
+.content-container{
+  width: 90%;
+  margin: 0 auto;
+  pre{
+    background-color: lightgrey;
+  }
+}
+
+@media screen and (max-width: 1000px){
+  .intro-container{
+    flex-direction: column-reverse !important;
+    aside{
+      width: 95%;
+      margin: 0 auto !important;
+    }
+    .resume{
+      text-align: center;
+      width: 95%;
+      margin: 0 auto;
+    }
+  }
+  .content-title{
+    font-size: 3em;
+  }
+}
