@@ -29,12 +29,20 @@
 .content-container{
   width: 90%;
   margin: 0 auto;
+  color: #000;
   pre{
     background-color: lightgrey;
+  }
+  .embed-responsive{
+    width: 70%;
+    margin: 0 auto;
   }
 }
 
 @media screen and (max-width: 1000px){
+  .embed-responsive{
+    width: 90% !important;
+  }
   .intro-container{
     flex-direction: column-reverse !important;
     aside{

@@ -5,7 +5,7 @@
     <h1 class="content-title text-center">{{ course.title }}</h1>
     <div class="intro-container d-flex flex-row justify-content-around">
         <aside class="">
-            <section class="border my-3 rounded ">
+            <section class="border my-3 rounded shadow p-2">
                 <h3>Informations :</h3>
                 <ul>
                     <li>Temps estimé : {{ time }} minutes</li>
@@ -13,7 +13,7 @@
                     <li>Ajouté le {{ course.createdAt|date("d/m/Y") }}</li>
                 </ul>
             </section>
-            <section class="border rounded my-3">
+            <section class="border rounded my-3 shadow p-2">
                 <h3>Chapitres :</h3>
                 <ul>
                     {% for chapter in chapters %}
@@ -21,14 +21,14 @@
                     {% endfor %}
                 </ul>
             </section>
-            <section class="border my-3 rounded ">
+            <section class="border my-3 rounded shadow p-2">
                 <h3>Exercices</h3>
                 <ul>
                     <li>Blabliblo</li>
                     <li>Blabliblo</li>
                 </ul>
             </section>
-            <section class="border my-3 rounded ">
+            <section class="border my-3 rounded shadow p-2">
                 <h3>Pré-requis</h3>
                 <ul>
                     <li>Blabliblo</li>
@@ -52,5 +52,4 @@
                 <p>{{ chapters[0].content|markdown_to_html }}</p>
         {% endif %}
     </div>
-
 {% endblock %}
