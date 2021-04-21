@@ -12,3 +12,13 @@ import '../scss/app.scss';
 import '../bootstrap';
 import 'jquery'
 import 'popper.js'
+
+$(document).ready(function (){
+    $('#hamburger-icon').click(function (){
+        if (!$('#hamburger-menu').is(":visible")){
+            $('#hamburger-menu').show()
+        }else{
+            $('#hamburger-menu').hide()
+        }
+    })
+})
