@@ -17,8 +17,12 @@ $(document).ready(function (){
     $('#hamburger-icon').click(function (){
         if (!$('#hamburger-menu').is(":visible")){
             $('#hamburger-menu').show()
+            $('#hamburger-icon svg').removeClass('rotated-inversed')
+            $('#hamburger-icon svg').toggleClass('rotated');
         }else{
             $('#hamburger-menu').hide()
+            $('#hamburger-icon svg').removeClass('rotated')
+            $('#hamburger-icon svg').toggleClass('rotated-inversed');
         }
     })
 })
