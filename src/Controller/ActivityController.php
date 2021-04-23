@@ -32,15 +32,40 @@ class ActivityController extends AbstractController
     public function show(Activity $activity): Response
     {
         $chapters = $activity->getActivityChapters();
-        $timer = 0;
-        foreach ($chapters as $chapter){
-            echo $chapter->getTime();
-            $timer += (int)$chapter->getTime();
+        $firstChapter = $chapters[0];
+        if(!$firstChapter == null){
+            return $this->redirectToRoute('activity_chapter_show', ['activitySlug'=> $activity->getSlug(), 'chapterSlug'=> $firstChapter->getSlug()]);
+        }else{
+            return $this->redirectToRoute('home');
         }
 
-        return $this->render("pages/showActivity.html.twig",[
+    }
+
+    /**
+     * @Route("/activites/{activitySlug}/{chapterSlug}", name="activity_chapter_show", methods={"GET"})
+     * @param String $activitySlug
+     * @param String $chapterSlug
+     * @return Response
+     */
+    public function showActivityChapter(String $activitySlug, String $chapterSlug):Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $activityRepository = $entityManager->getRepository(Activity::class);
+        $chapterRepository = $entityManager->getRepository(ActivityChapter::class);
+
+        $activity = $activityRepository->findOneBy(array('slug'=> $activitySlug));
+        $chapter = $chapterRepository->findOneBy(array('slug' => $chapterSlug));
+        $chapters = $activity->getActivityChapters();
+
+        $timer = 0;
+        foreach ($chapters as $chapterUnit){
+            $timer += (int)$chapterUnit->getTime();
+        }
+
+        return $this->render("pages/showActivity.html.twig", [
             "activity" => $activity,
             "chapters" => $chapters,
+            "currentChapter" => $chapter,
             "time" => $timer
         ]);
     }

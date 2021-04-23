@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ActivityChapterRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ActivityChapterRepository::class)
@@ -32,6 +33,13 @@ class ActivityChapter
      * @ORM\JoinColumn(nullable=false)
      */
     private $Activity;
+
+    /**
+     * @ORM\Column (type="string", length=255)
+     *
+     * @Gedmo\Slug(fields={"Title"})
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="smallint")
@@ -77,6 +85,18 @@ class ActivityChapter
         $this->Activity = $Activity;
 
         return $this;
+    }
+
+    public function setSlug(string $slug) : self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getSlug() : ?string
+    {
+        return $this->slug;
     }
 
     public function getTime(): ?int

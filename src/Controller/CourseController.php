@@ -33,7 +33,12 @@ class CourseController extends AbstractController
     {
         $chapters = $course->getCourseChapters();
         $firstChapter = $chapters[0];
-        return $this->redirectToRoute('course_chapter_show', ['courseSlug'=> $course->getSlug(), 'chapterSlug'=> $firstChapter->getSlug()]);
+        if(!$firstChapter == null){
+            return $this->redirectToRoute('course_chapter_show', ['courseSlug'=> $course->getSlug(), 'chapterSlug'=> $firstChapter->getSlug()]);
+        }else{
+            return $this->redirectToRoute('home');
+        }
+
     }
 
     /**

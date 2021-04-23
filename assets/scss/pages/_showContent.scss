@@ -12,12 +12,16 @@
   }
   aside{
     width: 20%;
-    section h3{
-      color: #269372;
+    section{
+      border-radius: 20px;
+      h3{
+        color: #269372;
+      }
     }
   }
   .resume{
     width: 50%;
+    border-radius: 20px;
     h3{
       font-weight: bold;
     }

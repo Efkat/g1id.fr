@@ -1,25 +1,55 @@
 {% extends "base.html.twig" %}
 {% block title %} {{ activity.Title }} {% endblock %}
 {% block body %}
-    <p>Activités > {{ activity.category }} > {{ activity.Title }} </p>
-    <h1 style="text-align: center">{{ activity.title }}</h1>
-    <p>Temps estimé : {{ time }} minutes</p>
-    <p>{{ activity.summary }}</p>
-    {% if chapters is empty %}
-        <div class="alert alert-warning" role="alert">
-            Aucun chapitre n'est disponible, reviens plus tard...
+    <p class="redirect my-3">Activités > {{ activity.category }} > {{ activity.Title }} </p>
+    <h1 class="content-title text-center">{{ activity.title }}</h1>
+    <div class="intro-container d-flex flex-row justify-content-around">
+        <aside class="">
+            <section class="border my-3 shadow p-2">
+                <h3>Informations :</h3>
+                <ul>
+                    <li>Temps estimé : {{ time }} minutes</li>
+                    <li>X chapitres</li>
+                    <li>Ajouté le {{ activity.createdAt|date("d/m/Y") }}</li>
+                </ul>
+            </section>
+            <section class="border my-3 shadow p-2">
+                <h3>Chapitres :</h3>
+                <ul>
+                    {% for chapter in chapters %}
+                        <li><a href="{{ path('activity_chapter_show', {'activitySlug': activity.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <section class="border my-3 shadow p-2">
+                <h3>Exercices</h3>
+                <ul>
+                    <li>Blabliblo</li>
+                    <li>Blabliblo</li>
+                </ul>
+            </section>
+            <section class="border my-3 shadow p-2">
+                <h3>Pré-requis</h3>
+                <ul>
+                    <li>Blabliblo</li>
+                    <li>Blabliblo</li>
+                </ul>
+            </section>
+        </aside>
+        <div class="resume my-auto shadow p-3">
+            <h3>Présentation</h3>
+            <p>{{ activity.summary }}</p>
         </div>
-    {% else %}
-        <div style="border: 1px solid black; display: inline-block">
-            <ul>
-                {% for chapter in chapters %}
-                    <li>{{ chapter.title }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div style="border: 1px solid red">
-            <h2>{{ chapters[0].title }}</h2>
-            <p>{{ chapters[0].content|markdown_to_html }}</p>
-        </div>
-    {% endif %}
+    </div>
+    <hr class="m-4">
+    <div class="content-container ">
+        {% if chapters is empty %}
+            <div class="alert alert-warning" role="alert">
+                Aucun chapitre n'est disponible, reviens plus tard...
+            </div>
+        {% else %}
+            <h1>{{ currentChapter.title }}</h1>
+            <p>{{ currentChapter.content|markdown_to_html }}</p>
+        {% endif %}
+    </div>
 {% endblock %}
