@@ -14,15 +14,17 @@ import 'jquery'
 import 'popper.js'
 
 $(document).ready(function (){
+    let icon = $('#hamburger-menu')
+    let iconSVG = $('#hamburger-icon svg');
     $('#hamburger-icon').click(function (){
-        if (!$('#hamburger-menu').is(":visible")){
-            $('#hamburger-menu').show()
-            $('#hamburger-icon svg').removeClass('rotated-inversed')
-            $('#hamburger-icon svg').toggleClass('rotated');
+        if (!icon.is(":visible")){
+            icon.show()
+            iconSVG.removeClass('rotated-inversed')
+            iconSVG.toggleClass('rotated');
         }else{
             $('#hamburger-menu').hide()
-            $('#hamburger-icon svg').removeClass('rotated')
-            $('#hamburger-icon svg').toggleClass('rotated-inversed');
+            iconSVG.removeClass('rotated')
+            iconSVG.toggleClass('rotated-inversed');
         }
     })
 })

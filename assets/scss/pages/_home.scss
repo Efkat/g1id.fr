@@ -9,21 +9,88 @@
   }
 }
 
-#actu{
+#actu-container{
   background-color: #F1F1F1;
   overflow: hidden;
-
   img{
     position: absolute;
     left: -50%;
+    z-index: 0;
+    opacity: 0.5;
   }
-  .actus-group {
-    border: rgba(0, 0, 0, 0.09) solid 1px;
-    z-index: 999;
+}
+
+#main-container{
+  padding: 0 10vw;
+  margin: 15vh 0;
+  section{
+    width: 50%;
+    h1{
+      font-size: 3.5em;
+    }
+    p{
+      font-size: 1.3em;
+    }
+  }
+  object{
+    width: 50%;
+  }
+}
+.green-text{
+  background-color: var(--color-green-transparent) !important;
+  color: var(--color-dark-green) !important;
+}
+.actus-group{
+  border-radius: 25px;
+  padding-top:30px !important;
+  color: #000;
+  border: rgba(0, 0, 0, 0.09) solid 1px;
+  width: 40%;
+  h3{
+    transform: translateY(-50%);
+    top: 0;
+    font-weight: bold;
+    font-size: 1.3em;
+    background-color: var(--color-transparent);
+    color: var(--color);
+  }
+  h2{
+    font-weight: 600;
+    font-size: 1.5em;
+  }
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+  a:hover{
+    color: var(--color);
+    font-size: larger;
+    transition: 0.8s;
+  }
+  p{
+    font-weight: 200;
+    font-style: italic;
+  }
+}
+
+@media screen and (max-width: 800px){
+  #main-container{
+    flex-direction: column-reverse !important;
+    justify-content: space-around !important;
+    margin: 0 auto;
+    height: 93vh;
+    section, object{
+      width: 90%;
+    }
+    section h1{
+      font-size: 2em ;
+    }
   }
 
-  h3{
-    background-color: var(--color-transparent);
-    color: var(--color-dark);
+  #actu-container{
+    flex-direction: column !important;
+    #actus-group{
+      width: 90%;
+    }
   }
 }

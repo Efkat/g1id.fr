@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %} {{ course.Title }} {% endblock %}
+{% block title %} {{ course.title }} {% endblock %}
 {% block body %}
     <p class="redirect my-3">Cours > {{ course.category }} > {{ course.Title }} </p>
     <h1 class="content-title text-center">{{ course.title }}</h1>
@@ -17,7 +17,7 @@
                 <h3>Chapitres :</h3>
                 <ul>
                     {% for chapter in chapters %}
-                        <li>{{ chapter.title }}</li>
+                        <li><a href="{{ path('course_chapter_show', {'courseSlug': course.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></li>
                     {% endfor %}
                 </ul>
             </section>
@@ -48,8 +48,8 @@
                 Aucun chapitre n'est disponible, reviens plus tard...
             </div>
         {% else %}
-                <h1>{{ chapters[0].title }}</h1>
-                <p>{{ chapters[0].content|markdown_to_html }}</p>
+                <h1>{{ currentChapter.title }}</h1>
+                <p>{{ currentChapter.content|markdown_to_html }}</p>
         {% endif %}
     </div>
 {% endblock %}
