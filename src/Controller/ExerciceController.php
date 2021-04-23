@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExerciceController extends AbstractController
 {
     /**
-     * @Route("/exercice", name="exercice_list")
+     * @Route("/exercices", name="exercice_list")
      */
     public function index(): Response
     {
@@ -19,6 +19,18 @@ class ExerciceController extends AbstractController
 
         return $this->render('pages/exerciceList.html.twig', [
             'exercices' => $exerciceRepository->findAll()
+        ]);
+    }
+
+    /**
+     * @Route("/exercices/{slug}", name="exercice_post_show")
+     * @param Exercice $exercice
+     * @return Response
+     */
+    public function show(Exercice $exercice): Response
+    {
+        return $this->render("pages/showExercice.html.twig", [
+            "exercice" => $exercice
         ]);
     }
 }

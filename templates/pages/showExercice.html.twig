@@ -1,0 +1,7 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ exercice.title }}{% endblock %}
+{% block body %}
+    {{ exercice.content }}
+    {{ exercice.help }}
+    {{ exercice.correction }}
+{% endblock %}

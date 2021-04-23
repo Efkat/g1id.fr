@@ -12,7 +12,7 @@
                         {% endfor %}</h5>
                     <h6>Ajouté le {{ exercice.createdAt|date('d/m/Y') }}</h6>
                     <p class="card-text">{{ exercice.content }}.</p>
-                    <a href="#" class="btn btn-primary">Faire l'exercice</a>
+                    <a href="{{ path('exercice_post_show', {"slug": exercice.slug}) }}" class="btn btn-primary">Faire l'exercice</a>
                 </div>
             </div>
         {% endfor %}
