@@ -14,8 +14,8 @@
   overflow: hidden;
   img{
     position: absolute;
-    left: -50%;
-    z-index: 0;
+    transform: translate(-50%, -15%);
+    height: 140%;
     opacity: 0.5;
   }
 }
@@ -71,6 +71,10 @@
     font-weight: 200;
     font-style: italic;
   }
+}
+
+#actuParent{
+  margin: 200px 0;
 }
 
 @media screen and (max-width: 800px){

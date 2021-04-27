@@ -11,7 +11,7 @@
         <object data="/assets/laptopIllustration.svg"></object>
     </div>
     <div id="actu-container">
-        <!--<img alt="bulb decoration for background" src="{{ asset('assets/Bulb_deco.svg') }}"/>-->
+        <img class="position-absolute top-50 start-0 translate-middle" alt="bulb decoration for background" src="{{ asset('assets/Bulb_deco.svg') }}"/>
         <div class="d-flex w-75 mx-auto flex-wrap justify-content-around">
             <section class="actus-group border border-1 my-5 p-4 position-relative"> <!-- Last lessons -->
                 <h3 class="rounded-pill d-inline-block p-2 position-absolute">Les derniers cours</h3>
@@ -35,10 +35,10 @@
                 <h3 class="rounded-pill d-inline-block p-2 position-absolute green-text">Les derniers projets</h3>
                 {% if projects %}
                     {% for project in projects %}
-                    <section>
-                        <h2><a href="{{ path('project_post_show', {'slug': project.slug}, relative = false) }}">{{ project.title }}</a></h2>
-                        <p>Ajouté le :  {{ project.createdAt|date("d/m/Y") }}</p>
-                    </section>
+                        <section>
+                            <h2><a href="{{ path('project_post_show', {'slug': project.slug}, relative = false) }}">{{ project.title }}</a></h2>
+                            <p>Ajouté le :  {{ project.createdAt|date("d/m/Y") }}</p>
+                        </section>
                         {% if projects[0] == project or projects[1] == project%}
                             <hr class="my-3">
                         {% endif %}
