@@ -4,7 +4,7 @@
     <h1 class="text-center">Tous les exercices</h1>
     <div class="d-flex container flex-wrap flex-row justify-content-around">
         {% for exercice in exercices %}
-            <div class="card col-4 m-3">
+            <div class="card col-4 m-3" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ exercice.title }} - {% for i in 0..exercice.difficulty %}
                             {% if i != 0 %}
