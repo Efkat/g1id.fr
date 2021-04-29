@@ -48,8 +48,14 @@
                 Aucun chapitre n'est disponible, reviens plus tard...
             </div>
         {% else %}
-                <h1>{{ currentChapter.title }}</h1>
-                <p>{{ currentChapter.content|markdown_to_html }}</p>
+            <h1>{{ currentChapter.title }}</h1>
+            <p>{{ currentChapter.content|markdown_to_html }}</p>
+            <div class="text-center">
+                <form action="#">
+                    <button type="button" class="btn btn-success">J'ai lu ce chapitre</button>
+                </form>
+            </div>
+
         {% endif %}
     </div>
 {% endblock %}
