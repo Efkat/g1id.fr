@@ -29,7 +29,7 @@ class AppFixtures extends Fixture
         $this->addReference("category", $categories[$faker->numberBetween(1,5)]);
 
         //Création des fixtures Cours
-        for($i = 0; $i<100;$i++){
+        for($i = 0; $i<50;$i++){
             $course = new Course();
             $course
                 ->setTitle($faker->words(3, true))
@@ -40,7 +40,7 @@ class AppFixtures extends Fixture
         }
 
         //Création des fixtures exercices
-        for($i = 0; $i<100;$i++){
+        for($i = 0; $i<50;$i++){
             $exercice = new Exercice();
             $exercice
                 ->setTitle($faker->words(3, true))
@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
         }
 
         //Création des fixtures Activités
-        for($i = 0; $i<100;$i++){
+        for($i = 0; $i<50;$i++){
             $activity = new Activity();
             $activity
                 ->setTitle($faker->words(3, true))
@@ -64,7 +64,7 @@ class AppFixtures extends Fixture
         }
 
         //Création des fixtures projets
-        for($i = 0; $i<100;$i++){
+        for($i = 0; $i<50;$i++){
             $project = new Project();
             $project
                 ->setTitle($faker->words(3, true))

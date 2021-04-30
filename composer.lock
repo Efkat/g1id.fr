@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "484d263b91ad3f7105ab6992bbf5e1a5",
+    "content-hash": "5b34b01ac8306199c9b8298aafe0eb2f",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1407,16 +1407,16 @@
         },
         {
             "name": "easycorp/easyadmin-bundle",
-            "version": "v3.2.7",
+            "version": "v3.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-                "reference": "48f71e3c95a5b1afffd99e5cee350f313dad4038"
+                "reference": "92175620303bec3374e9356e5018aa565269fd1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/48f71e3c95a5b1afffd99e5cee350f313dad4038",
-                "reference": "48f71e3c95a5b1afffd99e5cee350f313dad4038",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/92175620303bec3374e9356e5018aa565269fd1f",
+                "reference": "92175620303bec3374e9356e5018aa565269fd1f",
                 "shasum": ""
             },
             "require": {
@@ -1494,7 +1494,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-16T19:28:41+00:00"
+            "time": "2021-04-24T17:01:55+00:00"
         },
         {
             "name": "erusev/parsedown",
