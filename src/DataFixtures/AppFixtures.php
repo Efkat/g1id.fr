@@ -6,6 +6,7 @@ use App\Entity\Activity;
 use App\Entity\Category;
 use App\Entity\Course;
 use App\Entity\Exercice;
+use App\Entity\Project;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -60,6 +61,17 @@ class AppFixtures extends Fixture
                 ->setDifficulty($faker->numberBetween(1, 5))
                 ->setCategory($this->getReference("category"));
             $manager->persist($activity);
+        }
+
+        //Création des fixtures projets
+        for($i = 0; $i<100;$i++){
+            $project = new Project();
+            $project
+                ->setTitle($faker->words(3, true))
+                ->setSummary($faker->sentences(4, true))
+                ->setDifficulty($faker->numberBetween(1, 5))
+                ->setCategory($this->getReference("category"));
+            $manager->persist($project);
         }
         $manager->flush();
 
