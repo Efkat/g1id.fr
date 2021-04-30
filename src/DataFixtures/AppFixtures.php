@@ -2,13 +2,13 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Activity;
 use App\Entity\Category;
 use App\Entity\Course;
 use App\Entity\Exercice;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
-use function Sodium\add;
 
 class AppFixtures extends Fixture
 {
@@ -49,6 +49,17 @@ class AppFixtures extends Fixture
                 ->setDifficulty($faker->numberBetween(1, 5))
                 ->setCategory($this->getReference("category"));
             $manager->persist($exercice);
+        }
+
+        //Création des fixtures Activités
+        for($i = 0; $i<100;$i++){
+            $activity = new Activity();
+            $activity
+                ->setTitle($faker->words(3, true))
+                ->setSummary($faker->sentences(4, true))
+                ->setDifficulty($faker->numberBetween(1, 5))
+                ->setCategory($this->getReference("category"));
+            $manager->persist($activity);
         }
         $manager->flush();
 
