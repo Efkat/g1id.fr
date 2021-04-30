@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Entity\ProjectChapter;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,14 +15,20 @@ class ProjectController extends AbstractController
     /**
      * @Route("/projets", name="project_list")
      */
-    public function index(): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $projectRepository = $entityManager->getRepository(Project::class);
 
+        $projects = $paginator->paginate(
+            $projectRepository->findAll(),
+            $request->query->getInt('page',1),
+            9
+        );
+
         return $this->render('pages/generalList.html.twig', [
             'contentName' => 'projets',
-            'contents' => $projectRepository->findAll()
+            'contents' => $projects
         ]);
     }
 

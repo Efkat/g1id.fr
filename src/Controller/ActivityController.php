@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Activity;
 use App\Entity\ActivityChapter;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,14 +15,19 @@ class ActivityController extends AbstractController
     /**
      * @Route("/activites", name="activity_list")
      */
-    public function index(): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $activityRepository = $entityManager->getRepository(Activity::class);
 
+        $activities = $paginator->paginate(
+            $activityRepository->findAll(),
+            $request->query->getInt('page',1),
+            9
+        );
         return $this->render('pages/generalList.html.twig', [
             'contentName' => 'activités',
-            'contents' => $activityRepository->findAll()
+            'contents' => $activities
         ]);
     }
 

@@ -20,11 +20,13 @@ class CourseController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $courseRepository = $entityManager->getRepository(Course::class);
+
         $cours = $paginator->paginate(
             $courseRepository->findAll(),
             $request->query->getInt('page',1),
-            12
+            9
         );
+
         return $this->render('pages/generalList.html.twig', [
             'contentName' => 'cours',
             'contents' => $cours
