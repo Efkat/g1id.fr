@@ -30,6 +30,10 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="d-flex justify-content-center">
+            {{ knp_pagination_render(contents) }}
+        </div>
+
     {% else %}
         <div class="alert alert-warning text-center" role="alert">
             Aucun contenu n'est disponible pour le moment

@@ -4,23 +4,30 @@ namespace App\Controller;
 
 use App\Entity\Course;
 use App\Entity\CourseChapter;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Paginator
+
 
 class CourseController extends AbstractController
 {
     /**
      * @Route("/cours", name="course_list", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $courseRepository = $entityManager->getRepository(Course::class);
-
+        $cours = $paginator->paginate(
+            $courseRepository->findAll(),
+            $request->query->getInt('page',1),
+            12
+        );
         return $this->render('pages/generalList.html.twig', [
             'contentName' => 'cours',
-            'contents' => $courseRepository->findAll()
+            'contents' => $cours
         ]);
     }
 
