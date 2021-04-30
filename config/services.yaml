@@ -31,5 +31,5 @@ services:
     # please note that last definitions always *replace* previous ones
 
     App\DataFixtures\:
-        resource: '../../src/AppBundle/DataFixtures'
+        resource: '../src/DataFixtures'
         tags: [ 'doctrine.fixture.orm' ]
