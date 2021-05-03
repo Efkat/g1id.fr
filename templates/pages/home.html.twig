@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block body %}
+    <div id="main-container" class="d-flex flex-row align-items-center justify-content-between">
+        <section>
+            <h1 class="text-uppercase">Apprenez, où vous voulez quand vous voulez</h1>
+            <p>Il est possible d’apprendre grâce à plusieurs formats, des activités, des exercices, des vidéos et des projets pour apprendre tout en pratiquant !</p>
+        </section>
+        <object data="/assets/laptopIllustration.svg"></object>
+    </div>
+    <div id="actu-container">
+        <div class="d-flex w-75 mx-auto flex-wrap justify-content-around">
+            <section class="actus-group border border-1 my-5 p-4 position-relative"> <!-- Last lessons -->
+                <h3 class="rounded-pill d-inline-block p-2 position-absolute">Les derniers cours</h3>
+                {% if courses %}
+                    {% for course in courses %}
+                        <section>
+                            <h2><a href="{{ path('course_post_show', {'slug': course.slug}) }}">{{ course.title }}</a></h2>
+                            <p>Ajouté le :  {{ course.createdAt|date("d/m/Y") }}</p>
+                        </section>
+                        {% if courses[0] == course or courses[1] == course%}
+                            <hr class="my-3">
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        Aucun contenu n'est disponible pour le moment
+                    </div>
+                {% endif  %}
+            </section>
+            <section class="actus-group border border-1 my-5 p-4 position-relative"> <!-- Last projects -->
+                <h3 class="rounded-pill d-inline-block p-2 position-absolute green-text">Les derniers projets</h3>
+                {% if projects %}
+                    {% for project in projects %}
+                        <section>
+                            <h2><a href="{{ path('project_post_show', {'slug': project.slug}, relative = false) }}">{{ project.title }}</a></h2>
+                            <p>Ajouté le :  {{ project.createdAt|date("d/m/Y") }}</p>
+                        </section>
+                        {% if projects[0] == project or projects[1] == project%}
+                            <hr class="my-3">
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        Aucun contenu n'est disponible pour le moment
+                    </div>
+                {% endif  %}
+
+            </section>
+            <section class="actus-group border border-1 my-5 p-4 position-relative"> <!-- Last activities -->
+                <h3 class="rounded-pill d-inline-block p-2 position-absolute green-text">Les dernières activités</h3>
+                {% if activities %}
+                    {% for activity in activities %}
+                        <section>
+                            <h2><a href="{{ path('activity_post_show', {'slug': activity.slug}, relative = false) }}">{{ activity.title }}</a></h2>
+                            <p>Ajouté le :  {{ activity.createdAt|date("d/m/Y") }}</p>
+                        </section>
+                        {% if activities[0] == activity or activities[1] == activity %}
+                            <hr class="my-3">
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        Aucun contenu n'est disponible pour le moment
+                    </div>
+                {% endif  %}
+            </section>
+            <section class="actus-group border border-1 my-5 p-4 position-relative"> <!-- Last exercises -->
+                <h3 class="rounded-pill d-inline-block p-2 position-absolute ">Les derniers exercices</h3>
+                {% if exercises %}
+                    {% for exercice in exercises %}
+                        <section>
+                            <h2><a href="">{{ exercice.title }}</a></h2>
+                            <p>Ajouté le :  {{ exercice.createdAt|date("d/m/Y") }}</p>
+                        </section>
+                        {% if exercises[0] == exercice or exercises[1] == exercice %}
+                            <hr class="my-3">
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        Aucun contenu n'est disponible pour le moment
+                    </div>
+                {% endif  %}
+            </section>
+        </div>
+    </div>
+{% endblock %}

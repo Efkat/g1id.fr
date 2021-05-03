@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <img class="auth-deco position-absolute img-fluid" src="assets/Bulb_deco.png" alt="Bulb background">
+    {{ form_start(registrationForm, {
+        attr: {
+            'class': 'my-5'
+        }
+    }) }}
+    <section class="auth-container container">
+        <h1 class="h3 mb-3 text-center">Inscription</h1>
+        <div class="p-3 rounded shadow fields">
+            {{ form_row(registrationForm.email, {
+                label: 'Adresse mail',
+                attr: {
+                    'class': 'form-control'
+                }
+            }) }}
+            {{ form_row(registrationForm.name, {
+                label: 'Nom d\'utilisateur',
+                attr: {
+                    'class': 'form-control'
+                }
+            }) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Mot de passe',
+                attr: {
+                    'class': 'form-control'
+                }
+            }) }}
+            {{ form_row(registrationForm.birth, {
+                label: 'Date de naissance',
+                attr: {
+                    'type': 'date',
+                    'class': 'form-control'
+                }
+            }) }}
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-lg btn-primary">S'inscrire</button>
+            </div>
+
+        </div>
+    </section>
+
+    {{ form_end(registrationForm) }}
+
+
+{% endblock %}

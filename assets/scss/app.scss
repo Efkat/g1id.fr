@@ -1,0 +1,50 @@
+@import "~bootstrap/scss/bootstrap";
+
+//Modules importations
+@import "modules/header";
+@import "modules/typography";
+@import "modules/hamburger";
+
+//Pages importations
+@import "pages/home";
+@import "pages/general";
+@import "pages/auth";
+@import "pages/showContent";
+@import "pages/exercice";
+
+:root{
+  --color: #6147FF;
+  --color-transparent: rgba(97, 71, 255,0.7);
+  --color-dark: #5740E6;
+  --color-green: #27B087;
+  --color-green-transparent: rgba(39, 176, 135, 0.7);
+  --color-dark-green: #1E8C6B ;
+}
+
+body{
+  font-family: $font;
+  color: var(--color);
+}
+
+$enable-responsive-font-sizes: true;
+
+.rotated {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  transition-duration: 2s;
+  animation-timing-function: cubic-bezier(.04,.69,1,.7);
+}
+.rotated-inversed {
+   -webkit-transform: rotate(90deg);
+   -moz-transform: rotate(90deg);
+   -o-transform: rotate(90deg);
+   -ms-transform: rotate(90deg);
+   transform: rotate(360deg);
+   transition-duration: 2s;
+  animation-timing-function: cubic-bezier(.04,.69,1,.7);
+ }
+
+
