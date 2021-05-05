@@ -1,7 +1,8 @@
 # Documentation
 
-##Sommaire
+## Sommaire
 
-1.[Installation](installation.md)
+1.[Installation](installation.md)  
+2.[Ajout d'un rôle admin](admin.md)
 
 ***d'autres menus sont en rédaction***
