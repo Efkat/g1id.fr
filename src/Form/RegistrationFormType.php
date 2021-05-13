@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
@@ -25,7 +26,19 @@ class RegistrationFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('name')
+            ->add('name', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez saisir un pseudo.'
+                    ]),
+                    new Length([
+                        'min' => 4,
+                        'minMessage' => 'Votre pseudo doit être d\' au moins {{ limit }} caractères.',
+                        'max' => 255,
+                        'maxMessage' => 'Votre pseudo ne doit pas dépasser {{ limit }} caractères.',
+                    ])
+                ]
+            ])
             ->add('birth', DateType::class,[
                 'widget' => 'single_text',
                 'constraints' => [
