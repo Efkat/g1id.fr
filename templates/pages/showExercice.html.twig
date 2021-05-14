@@ -1,10 +1,10 @@
 {% extends "base.html.twig" %}
-{% block title %}{{ exercice.title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block body %}
     <div class="jumbotron jumbotron-fluid my-0">
         <div class="container">
             <h1 class="display-4">Énoncé</h1>
-            <div class="lead"> {{ exercice.content | markdown_to_html }} </div>
+            <div class="lead"> {{ content | markdown_to_html }} </div>
         </div>
         <div class="d-flex flex-row justify-content-around align-items-center ">
             <button type="button" class="btn btn-warning mx-3 help-bouton">Afficher l'aide</button>
@@ -15,13 +15,13 @@
     <div class="jumbotron jumbotron-fluid mx-auto w-75 mt-4 help-container">
         <div class="container ">
             <h1 class="display-4">Aide</h1>
-            <div class="lead">{{ exercice.help | markdown_to_html }}</div>
+            <div class="lead">{{ help | markdown_to_html }}</div>
         </div>
     </div>
     <div class="jumbotron jumbotron-fluid mx-auto w-75 solution-container">
         <div class="container">
             <h1 class="display-4">Solution</h1>
-            <div class="lead">{{ exercice.correction | markdown_to_html }}</div>
+            <div class="lead">{{ correction | raw }}</div>
         </div>
     </div>
 {% endblock %}

@@ -49,7 +49,7 @@
             </div>
         {% else %}
             <h1>{{ currentChapter.title }}</h1>
-            {{ currentChapter.content|markdown_to_html }}
+            {{ currentChapter.content | raw }}
         {% endif %}
     </div>
 {% endblock %}
