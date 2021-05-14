@@ -39,15 +39,21 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-
-        yield MenuItem::section("Main", 'fa fa-pen-alt');
+        yield MenuItem::section("Main", 'fas fa-globe');
+        yield MenuItem::subMenu('Activités', 'fa fa-pen-alt')->setSubItems([
+            MenuItem::linkToCrud('Activités', 'fa fa-pen-alt', Activity::class),
+            MenuItem::linkToCrud('Chapitres', 'fa fa-file-text', ActivityChapter::class)
+        ]);
+        yield MenuItem::subMenu('Projets', 'fa fa-tools')->setSubItems([
+            MenuItem::linkToCrud('Projets', 'fa fa-tools', Project::class),
+            MenuItem::linkToCrud('Chapitres', 'fa fa-file-text', ProjectChapter::class)
+        ]);
+        yield MenuItem::subMenu('Cours', 'fa fa-book')->setSubItems([
+            MenuItem::linkToCrud('Cours', 'fa fa-book', Course::class),
+            MenuItem::linkToCrud('Chapitres', 'fa fa-file-text', CourseChapter::class)
+        ]);
         yield MenuItem::linkToCrud("Exercice",'fa fa-pencil-ruler', Exercice::class);
-        yield MenuItem::linkToCrud("Activités", 'fa fa-puzzle-piece', Activity::class);
-        yield MenuItem::linkToCrud("Activités-Chapitre", 'fa fa-puzzle-piece', ActivityChapter::class);
-        yield MenuItem::linkToCrud("Projets", 'fa fa-tools', Project::class);
-        yield MenuItem::linkToCrud("Projets-Chapitre", 'fa fa-tools', ProjectChapter::class);
-        yield MenuItem::linkToCrud("Cours","fa fa-book",Course::class);
-        yield MenuItem::linkToCrud("Cours-Chapitre","fa fa-book",CourseChapter::class);
+
 
         yield MenuItem::section("Others", 'fa fa-globe');
         yield MenuItem::linkToCrud("Catégories", 'fa fa-bookmark', Category::class);
