@@ -71,7 +71,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException("Les identifians saisis sont erronés.");
+            throw new CustomUserMessageAuthenticationException("Les identifiants saisis sont erronés.");
         }
 
         return $user;
