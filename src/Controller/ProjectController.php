@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Entity\ProjectChapter;
+use App\ParsedownExtensionMathJaxLaTex;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,6 +57,8 @@ class ProjectController extends AbstractController
      */
     public function showProjectChapter(String $projectSlug, String $chapterSlug):Response
     {
+        $parser = new ParsedownExtensionMathJaxLaTex();
+
         $entityManager = $this->getDoctrine()->getManager();
         $projectRepository = $entityManager->getRepository(Project::class);
         $chapterRepository = $entityManager->getRepository(ProjectChapter::class);
@@ -63,6 +66,8 @@ class ProjectController extends AbstractController
         $project = $projectRepository->findOneBy(array('slug'=> $projectSlug));
         $chapter = $chapterRepository->findOneBy(array('slug' => $chapterSlug));
         $chapters = $project->getProjectChapters();
+
+        $chapter->setContent($parser->parse($chapter->getContent()));
 
         $timer = 0;
         foreach ($chapters as $chapterUnit){

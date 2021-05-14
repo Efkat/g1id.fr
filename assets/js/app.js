@@ -15,6 +15,7 @@ import 'popper.js'
 
 
 import './exercice'
+import './mathjax-config'
 
 $(document).ready(function (){
     let icon = $('#hamburger-menu')

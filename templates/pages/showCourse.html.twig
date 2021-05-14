@@ -49,7 +49,7 @@
             </div>
         {% else %}
             <h1>{{ currentChapter.title }}</h1>
-            <p>{{ currentChapter.content|markdown_to_html }}</p>
+            <p>{{ currentChapter.content|raw }}</p>
             <div class="text-center">
                 <form action="#">
                     <button type="button" class="btn btn-success">J'ai lu ce chapitre</button>
