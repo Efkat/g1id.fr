@@ -4,12 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Course;
 use App\Entity\CourseChapter;
+use App\ParsedownExtensionMathJaxLaTex;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Paginator
-
 
 class CourseController extends AbstractController
 {
@@ -58,6 +58,8 @@ class CourseController extends AbstractController
      */
     public function showCourseChapter(String $courseSlug, String $chapterSlug): Response
     {
+        $parser = new ParsedownExtensionMathJaxLaTex();
+
         $entityManager = $this->getDoctrine()->getManager();
         $courseRepository = $entityManager->getRepository(Course::class);
         $chapterRepository = $entityManager->getRepository(CourseChapter::class);
@@ -65,6 +67,8 @@ class CourseController extends AbstractController
         $course = $courseRepository->findOneBy(array('slug'=> $courseSlug));
         $chapter = $chapterRepository->findOneBy(array('slug' => $chapterSlug));
         $chapters = $course->getCourseChapters();
+
+        $chapter->setContent($parser->parse($chapter->getContent()));
 
         $timer = 0;
         foreach ($chapters as $chapterUnit){

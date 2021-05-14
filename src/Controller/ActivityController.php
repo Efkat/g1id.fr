@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Activity;
 use App\Entity\ActivityChapter;
+use App\ParsedownExtensionMathJaxLaTex;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,6 +57,8 @@ class ActivityController extends AbstractController
      */
     public function showActivityChapter(String $activitySlug, String $chapterSlug):Response
     {
+        $parser = new ParsedownExtensionMathJaxLaTex();
+
         $entityManager = $this->getDoctrine()->getManager();
         $activityRepository = $entityManager->getRepository(Activity::class);
         $chapterRepository = $entityManager->getRepository(ActivityChapter::class);
@@ -63,6 +66,8 @@ class ActivityController extends AbstractController
         $activity = $activityRepository->findOneBy(array('slug'=> $activitySlug));
         $chapter = $chapterRepository->findOneBy(array('slug' => $chapterSlug));
         $chapters = $activity->getActivityChapters();
+
+        $chapter->setContent($parser->parse($chapter->getContent()));
 
         $timer = 0;
         foreach ($chapters as $chapterUnit){

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Exercice;
+use App\ParsedownExtensionMathJaxLaTex;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,8 +38,13 @@ class ExerciceController extends AbstractController
      */
     public function show(Exercice $exercice): Response
     {
+        $parser = new ParsedownExtensionMathJaxLaTex();
+
         return $this->render("pages/showExercice.html.twig", [
-            "exercice" => $exercice
+            "title" => $exercice->getTitle(),
+            "content" => $parser->parse($exercice->getContent()),
+            "help" => $parser->parse($exercice->getHelp()),
+            "correction" => $parser->parse($exercice->getCorrection())
         ]);
     }
 }
