@@ -43,7 +43,7 @@ class HomeController extends AbstractController
     {
         $user = $this->getUser();
         if($user){
-            $progression = new Progression();
+
         }else{
             $this->redirectToRoute("home");
         }

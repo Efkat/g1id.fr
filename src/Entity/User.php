@@ -58,13 +58,13 @@ class User implements UserInterface
     private $Name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Progession::class, mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity=Progression::class, mappedBy="user")
      */
-    private $progessions;
+    private $progressions;
 
     public function __construct()
     {
-        $this->progessions = new ArrayCollection();
+        $this->progressions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -173,29 +173,29 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Progession[]
+     * @return Collection|Progression[]
      */
-    public function getProgessions(): Collection
+    public function getProgressions(): Collection
     {
-        return $this->progessions;
+        return $this->progressions;
     }
 
-    public function addProgession(Progession $progession): self
+    public function addProgression(Progression $progression): self
     {
-        if (!$this->progessions->contains($progession)) {
-            $this->progessions[] = $progession;
-            $progession->setUserId($this);
+        if (!$this->progressions->contains($progression)) {
+            $this->progressions[] = $progression;
+            $progression->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeProgession(Progession $progession): self
+    public function removeProgression(Progression $progression): self
     {
-        if ($this->progessions->removeElement($progession)) {
+        if ($this->progressions->removeElement($progression)) {
             // set the owning side to null (unless already changed)
-            if ($progession->getUserId() === $this) {
-                $progession->setUserId(null);
+            if ($progression->getUser() === $this) {
+                $progression->setUser(null);
             }
         }
 

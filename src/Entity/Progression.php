@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ProgessionRepository;
+use App\Repository\ProgressionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ProgessionRepository::class)
+ * @ORM\Entity(repositoryClass=ProgressionRepository::class)
  */
-class Progession
+class Progression
 {
     /**
      * @ORM\Id
@@ -28,10 +28,10 @@ class Progession
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="progessions")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="progressions")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $user;
 
     public function getId(): ?int
     {
@@ -62,14 +62,14 @@ class Progession
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUser(?User $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
