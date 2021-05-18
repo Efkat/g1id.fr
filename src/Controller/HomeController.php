@@ -6,6 +6,8 @@ use App\Entity\Activity;
 use App\Entity\Course;
 use App\Entity\Exercice;
 use App\Entity\Project;
+use http\Env\Request;
+use PhpParser\Node\Scalar\String_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +31,22 @@ class HomeController extends AbstractController
             'activities' => $activityRepository->findLast(),
             'exercises' => $exerciceRepository->findLast()
         ]);
+    }
+
+    /**
+     * @Route ("/markAsRead/{type}/{slug}", name="marrkAsRead")
+     * @param string $type
+     * @param string $slug
+     * @return Response
+     */
+    public function markAsRead(string $type, string $slug): Response
+    {
+        $user = $this->getUser();
+        if($user){
+            $progression = new Progression();
+        }else{
+            $this->redirectToRoute("home");
+        }
     }
 
     public function homeLogged(): Response

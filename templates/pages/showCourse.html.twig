@@ -51,7 +51,7 @@
             <h1>{{ currentChapter.title }}</h1>
             <p>{{ currentChapter.content|raw }}</p>
             <div class="text-center">
-                <form action="#">
+                <form action="/markAsRead/course/{{ currentChapter.slug }}">
                     <button type="button" class="btn btn-success">J'ai lu ce chapitre</button>
                 </form>
             </div>

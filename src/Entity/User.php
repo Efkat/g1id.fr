@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -54,6 +56,16 @@ class User implements UserInterface
      *)
      */
     private $Name;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Progession::class, mappedBy="user_id")
+     */
+    private $progessions;
+
+    public function __construct()
+    {
+        $this->progessions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +168,36 @@ class User implements UserInterface
     public function setName(string $Name): self
     {
         $this->Name = $Name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Progession[]
+     */
+    public function getProgessions(): Collection
+    {
+        return $this->progessions;
+    }
+
+    public function addProgession(Progession $progession): self
+    {
+        if (!$this->progessions->contains($progession)) {
+            $this->progessions[] = $progession;
+            $progession->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgession(Progession $progession): self
+    {
+        if ($this->progessions->removeElement($progession)) {
+            // set the owning side to null (unless already changed)
+            if ($progession->getUserId() === $this) {
+                $progession->setUserId(null);
+            }
+        }
 
         return $this;
     }
