@@ -13,6 +13,7 @@ Vous voulez apprendre la programmation du langage libre Python ? Vous ne savez p
 * [Bootstrap](https://getbootstrap.com/) - Framework CSS
 * [SASS](https://sass-lang.com/documentation/syntax) - Préprocesseur CSS
 * [EasyAdmin](https://symfony.com/doc/current/bundles/EasyAdminBundle/index.html) - Bundle Symfony dédié à l'administration
+* [Parsedown](https://parsedown.org/) - Parser Markdown vers HTML
 
 
 ## Auteur
