@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Progression;
 use App\Entity\Project;
 use App\Entity\ProjectChapter;
 use App\ParsedownExtensionMathJaxLaTex;
@@ -58,6 +59,24 @@ class ProjectController extends AbstractController
     public function showProjectChapter(String $projectSlug, String $chapterSlug):Response
     {
         $parser = new ParsedownExtensionMathJaxLaTex();
+        $user = $this->getUser();
+
+        $chapterRead = false;
+
+        $userProgs = $user->getProgressions();
+        $userSlugArray = [];
+        foreach ($userProgs as $prog){
+            array_push($userSlugArray, $prog->getSlug());
+        }
+
+        $tempProg = new Progression();
+        $tempProg->setUser($user)
+            ->setType('project')
+            ->setSlug($chapterSlug);
+
+        if (in_array($chapterSlug, $userSlugArray)){
+            $chapterRead = true;
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
         $projectRepository = $entityManager->getRepository(Project::class);
@@ -78,7 +97,8 @@ class ProjectController extends AbstractController
             "project" => $project,
             "chapters" => $chapters,
             "currentChapter" => $chapter,
-            "time" => $timer
+            "time" => $timer,
+            "isRead" => $chapterRead
         ]);
     }
 }

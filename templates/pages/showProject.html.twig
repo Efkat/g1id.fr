@@ -50,6 +50,16 @@
         {% else %}
             <h1>{{ currentChapter.title }}</h1>
             {{ currentChapter.content | raw }}
+
+            {% if isRead %}
+                <div class="text-center">
+                    <button type="button" class="btn btn-info" disabled>J'ai déjà lu ce chapitre</button>
+                </div>
+            {% else %}
+                <div class="text-center">
+                    <button type="button" class="btn btn-success" onclick="location.href ='/markAsRead/project/{{ currentChapter.slug }}'">J'ai lu ce chapitre</button>
+                </div>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}
