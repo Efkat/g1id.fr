@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Course;
 use App\Entity\CourseChapter;
+use App\Entity\Progression;
 use App\ParsedownExtensionMathJaxLaTex;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,7 +59,24 @@ class CourseController extends AbstractController
      */
     public function showCourseChapter(String $courseSlug, String $chapterSlug): Response
     {
+        $user = $this->getUser();
         $parser = new ParsedownExtensionMathJaxLaTex();
+        $chapterRead = false;
+
+        $userProgs = $user->getProgressions();
+        $userSlugArray = [];
+        foreach ($userProgs as $prog){
+            array_push($userSlugArray, $prog->getSlug());
+        }
+
+        $tempProg = new Progression();
+        $tempProg->setUser($user)
+            ->setType('course')
+            ->setSlug($chapterSlug);
+
+        if (in_array($chapterSlug, $userSlugArray)){
+            $chapterRead = true;
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
         $courseRepository = $entityManager->getRepository(Course::class);
@@ -79,7 +97,8 @@ class CourseController extends AbstractController
             "course" => $course,
             "chapters" => $chapters,
             "currentChapter" => $chapter,
-            "time" => $timer
+            "time" => $timer,
+            "isRead" => $chapterRead
         ]);
     }
 }
