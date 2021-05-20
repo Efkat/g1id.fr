@@ -16,7 +16,7 @@ class ProfilController extends AbstractController
         $user = $this->getUser();
         if($user){
             return $this->render('profil/index.html.twig', [
-                'controller_name' => 'ProfilController',
+                'user' => $user
             ]);
         }else{
             return $this->redirectToRoute("app_login");
