@@ -10,6 +10,7 @@ use App\Entity\CourseChapter;
 use App\Entity\Exercice;
 use App\Entity\Project;
 use App\Entity\ProjectChapter;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -57,5 +58,6 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section("Others", 'fa fa-globe');
         yield MenuItem::linkToCrud("Catégories", 'fa fa-bookmark', Category::class);
+        yield MenuItem::linkToCrud("Utilisateurs", 'fa fa-users', User::class);
     }
 }
