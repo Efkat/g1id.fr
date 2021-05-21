@@ -30,10 +30,18 @@ class DashboardController extends AbstractDashboardController
     {
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository(User::class);
+        $projectRepo = $em->getRepository(Project::class);
+        $activityRepo = $em->getRepository(Activity::class);
+        $exercicesRepo = $em->getRepository(Exercice::class);
+        $courseRepo = $em->getRepository(Course::class);
 
         return $this->render("admin/dashboard.html.twig",[
             "user" => $this->getUser(),
-            "userCount" => $userRepo->getTotalUsers()
+            "userCount" => $userRepo->getTotalUsers(),
+            "projectCount" => $projectRepo->getTotalProjects(),
+            "activityCount" => $activityRepo->getTotalActivities(),
+            "exerciceCount" => $exercicesRepo->getTotalExercices(),
+            "courseCount" => $courseRepo->getTotalCourses()
         ]);
     }
 
