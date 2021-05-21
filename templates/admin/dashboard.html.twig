@@ -1,14 +1,14 @@
-{% extends "@EasyAdmin/page/content.html.twig"%}
+{% extends "@!EasyAdmin/page/content.html.twig"%}
 {% block content %}
     <div class="jumbotron">
         <h1>Bienvenue {{ user.name }} sur la page d'administration,</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <p class="lead">Retrouvez ici toutes les informations concernant G1ID.</p>
         <hr class="my-4">
-        <div class="d-flex flex-row justify-content-around">
+        <div id="infos-dashboard" class="d-flex flex-row justify-content-around flex-wrap w-100">
             <section class="border my-3 shadow p-2 rounded">
                 <h3>Nombre d'utilisateurs inscrits : </h3>
                 <ul>
-                    <li>XXX Inscrits</li>
+                    <li>{{ userCount}} Inscrit{% if userCount > 1 %}s{% endif %}</li>
                 </ul>
             </section>
             <section class="border my-3 shadow p-2 rounded">

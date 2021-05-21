@@ -30,6 +30,16 @@ class CourseRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * Used to count Courses in database
+     */
+    public function getTotalCourses(){
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return Course[] Returns an array of Course objects
     //  */

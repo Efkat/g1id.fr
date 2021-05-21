@@ -30,6 +30,16 @@ class ActivityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * Used to count Activities in database
+     */
+    public function getTotalActivities(){
+        return $this->createQueryBuilder('a')
+            ->select('count(a.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return Activity[] Returns an array of Activity objects
     //  */
