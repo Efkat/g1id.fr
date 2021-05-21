@@ -8,12 +8,13 @@ Vous voulez apprendre la programmation du langage libre Python ? Vous ne savez p
 ## Fabriqué avec
 
 * [Symfony](https://symfony.com/) - Framework PHP 
-* [PHPStorm](https://www.jetbrains.com/fr-fr/phpstorm/) - Environnement de développement
-* [Webpack-Encore](https://github.com/symfony/webpack-encore) - Intégration Symfony de Webpack
-* [Bootstrap](https://getbootstrap.com/) - Framework CSS
-* [SASS](https://sass-lang.com/documentation/syntax) - Préprocesseur CSS
-* [EasyAdmin](https://symfony.com/doc/current/bundles/EasyAdminBundle/index.html) - Bundle Symfony dédié à l'administration
-* [Parsedown](https://parsedown.org/) - Parser Markdown vers HTML
+* [PHPStorm](https://www.jetbrains.com/fr-fr/phpstorm/) - Environnement de développement.
+* [Webpack-Encore](https://github.com/symfony/webpack-encore) - Intégration Symfony de Webpack.
+* [Bootstrap](https://getbootstrap.com/) - Framework CSS.
+* [SASS](https://sass-lang.com/documentation/syntax) - Préprocesseur CSS.
+* [EasyAdmin](https://symfony.com/doc/current/bundles/EasyAdminBundle/index.html) - Bundle Symfony dédié à l'administration.
+* [Parsedown](https://parsedown.org/) - Parser Markdown vers HTML.
+* [Mathjax](https://www.mathjax.org/) - Libraire permettant de mettre en forme les formules LaTex bruts.
 
 
 ## Auteur
