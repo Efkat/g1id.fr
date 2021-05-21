@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Progression;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
@@ -22,7 +23,8 @@ class UserCrudController extends AbstractCrudController
             EmailField::new('email', 'Adresse mail'),
             TextField::new('name', 'Nom d\'utilisateur'),
             DateField::new('birth', 'Date d\'anniversaire'),
-            ArrayField::new('roles', 'Roles')
+            ArrayField::new('roles', 'Roles'),
+            ArrayField::new('progressions', 'Progression')
         ];
     }
 }

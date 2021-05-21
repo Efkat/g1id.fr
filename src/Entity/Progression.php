@@ -73,4 +73,9 @@ class Progression
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->type . "/" . $this->slug;
+    }
 }
