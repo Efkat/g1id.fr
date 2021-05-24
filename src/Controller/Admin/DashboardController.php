@@ -11,7 +11,6 @@ use App\Entity\Exercice;
 use App\Entity\Project;
 use App\Entity\ProjectChapter;
 use App\Entity\User;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
