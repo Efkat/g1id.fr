@@ -13,7 +13,7 @@
     {% if contents %}
         <div id="list" class="d-flex flex-row flex-wrap container justify-content-around">
             {% for content in contents %}
-                <div id="card h100 col-1" class="card shadow my-5" style="width: 18rem;">
+                <div class="card shadow my-5" style="width: 18rem;">
                     <div class="card-body ">
                         <h5 class="card-title"><a href="{{ contentName|replace({"é": "e"}) }}/{{ content.slug }}">{{ content.title }}</a></h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ content.category.name }}</h6>

@@ -4,15 +4,19 @@
     <h1 class="text-center">Tous les exercices</h1>
     <div class="d-flex container flex-wrap flex-row justify-content-around">
         {% for exercice in exercices %}
-            <div class="card col-4 m-3" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ exercice.title }} - {% for i in 0..exercice.difficulty %}
+            <div class="card shadow my-5" style="width: 18rem;">
+                <div class="card-body ">
+                    <h5 class="card-title"><a href="{{ path('exercice_post_show', {"slug": exercice.slug}) }}">{{ exercice.title }}</a></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ exercice.category.name }}</h6>
+                    <p class="card-text summary ">{{ exercice.content }}.</p>
+                    <p class="card-text text-secondary">Ajouté le {{ exercice.createdAt|date('d/m/Y') }}</p>
+                    <p class="card-text text-secondary">Difficulté :
+                        {% for i in 0..exercice.difficulty %}
                             {% if i != 0 %}
                                 ⭐
                             {% endif %}
-                        {% endfor %}</h5>
-                    <h6>Ajouté le {{ exercice.createdAt|date('d/m/Y') }}</h6>
-                    <p class="card-text summary">{{ exercice.content }}.</p>
+                        {% endfor %}
+                    </p>
                     <a href="{{ path('exercice_post_show', {"slug": exercice.slug}) }}" class="btn btn-primary">Faire l'exercice</a>
                 </div>
             </div>
