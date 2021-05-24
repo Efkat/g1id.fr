@@ -20,6 +20,13 @@ import './mathjax-config'
 $(document).ready(function (){
     let icon = $('#hamburger-menu')
     let iconSVG = $('#hamburger-icon svg');
+
+    let actus = $('#actus')
+
+    if(screen.width <= 800){
+        actus.toggleClass("w-75")
+    }
+
     $('#hamburger-icon').click(function (){
         if (!icon.is(":visible")){
             icon.show()
