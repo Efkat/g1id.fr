@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Exercice;
+use App\Entity\Progression;
 use App\ParsedownExtensionMathJaxLaTex;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,15 +20,26 @@ class ExerciceController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $exerciceRepository = $entityManager->getRepository(Exercice::class);
+        $user = $this->getUser();
+        $exercisesArray = [];
+
+        if($user){
+            $progRepository = $entityManager->getRepository(Progression::class);
+            $progs = $progRepository->findBy(["type" => "exercice", "user" => $user]);
+
+            foreach ($progs as $prog) {
+                array_push($exercisesArray, $prog->getSlug());
+            }
+        }
 
         $exercises = $paginator->paginate(
             $exerciceRepository->findAll(),
             $request->query->getInt('page',1),
             9
         );
-
         return $this->render('pages/exerciceList.html.twig', [
-            'exercices' => $exercises
+            'exercices' => $exercises,
+            'progs' => $exercisesArray
         ]);
     }
 
