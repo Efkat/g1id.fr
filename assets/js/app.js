@@ -13,7 +13,6 @@ import '../bootstrap'
 import 'jquery'
 import 'popper.js'
 
-
 import './exercice'
 import './mathjax-config'
 
