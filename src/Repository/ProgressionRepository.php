@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Progression;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,21 @@ class ProgressionRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Progression::class);
+    }
+
+    /**
+     * @return Progression[] Returns an array which contains all exercises mark as read by a $user
+     * @param User $user
+     */
+    public function getAllExercises(User $user): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.type = :type')
+            ->andWhere('p.user = :user')
+            ->setParameter('user', $user)
+            ->setParameter('type', "exercice")
+            ->getQuery()
+            ->getArrayResult();
     }
 
     // /**

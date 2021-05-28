@@ -3,7 +3,10 @@
 {% block body %}
     <div class="jumbotron jumbotron-fluid my-0">
         <div class="container">
-            <h1 class="display-4">Énoncé</h1>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <h1 class="display-4">Énoncé</h1>
+                <p><button type="button" class="btn btn-success" onclick="location.href ='/markAsRead/exercice/{{ slug }}'">J'ai fais cet exercice.</button></p>
+            </div>
             <div class="lead"> {{ content | markdown_to_html }} </div>
         </div>
         <div class="d-flex flex-row justify-content-around align-items-center ">

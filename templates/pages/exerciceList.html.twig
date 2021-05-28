@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
+{% set break = false %}
 {% block title %}Exercices{% endblock %}
 {% block body %}
     <h1 class="text-center">Tous les exercices</h1>
     {% for prog in progs %}
-        {{ prog }}
+        <p>{{ prog }}</p>
     {% endfor %}
     <div class="d-flex container flex-wrap flex-row justify-content-around">
         {% for exercice in exercices %}
@@ -20,13 +21,11 @@
                             {% endif %}
                         {% endfor %}
                     </p>
-                    {% for prog in progs %}
-                        {% if exercice.slug == prog %}
-                            <a href="{{ path('exercice_post_show', {"slug": exercice.slug}) }}" class="btn btn-warning">Exercice Réalisé</a>
-                        {% else %}
-                            <a href="{{ path('exercice_post_show', {"slug": exercice.slug}) }}" class="btn btn-primary">Faire l'exercice</a>
-                        {% endif %}
-                    {% endfor %}
+                    {% if exercice.slug in progs %}
+                        <a href="{{ path('exercice_post_show', {"slug": exercice.slug}) }}" class="btn btn-warning">Exercice Réalisé</a>
+                    {% else %}
+                        <a href="{{ path('exercice_post_show', {"slug": exercice.slug}) }}" class="btn btn-primary">Faire l'exercice</a>
+                    {% endif%}
                 </div>
             </div>
         {% endfor %}

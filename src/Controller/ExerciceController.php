@@ -50,13 +50,28 @@ class ExerciceController extends AbstractController
      */
     public function show(Exercice $exercice): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $progRepo = $em->getRepository(Progression::class);
+
         $parser = new ParsedownExtensionMathJaxLaTex();
+        $isRead = false;
+        $user = $this->getUser();
+        $slug = $exercice->getSlug();
+
+        if($user){
+            $progressions = $progRepo->getAllExercises($user);
+            foreach ($progressions as $progression) {
+                dump($progression);
+            }
+            dump($isRead);
+        }
 
         return $this->render("pages/showExercice.html.twig", [
             "title" => $exercice->getTitle(),
             "content" => $parser->parse($exercice->getContent()),
             "help" => $parser->parse($exercice->getHelp()),
-            "correction" => $parser->parse($exercice->getCorrection())
+            "correction" => $parser->parse($exercice->getCorrection()),
+            "slug" => $exercice->getSlug()
         ]);
     }
 }

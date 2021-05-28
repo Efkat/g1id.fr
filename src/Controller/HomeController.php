@@ -53,10 +53,10 @@ class HomeController extends AbstractController
             $userProgs = $user->getProgressions();
             $userProgsArray = [];
             foreach ($userProgs as $prog){
-                array_push($userProgsArray, $prog);
+                array_push($userProgsArray, $prog->getSlug());
             }
 
-            if(in_array($progression, $userProgsArray)){
+            if(in_array($progression->getSlug(), $userProgsArray)){
                 return $this->redirectToRoute("home");
             }
 
