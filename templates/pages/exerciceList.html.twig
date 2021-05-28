@@ -3,9 +3,6 @@
 {% block title %}Exercices{% endblock %}
 {% block body %}
     <h1 class="text-center">Tous les exercices</h1>
-    {% for prog in progs %}
-        <p>{{ prog }}</p>
-    {% endfor %}
     <div class="d-flex container flex-wrap flex-row justify-content-around">
         {% for exercice in exercices %}
             <div class="card shadow my-5" style="width: 18rem;">
@@ -30,4 +27,8 @@
             </div>
         {% endfor %}
     </div>
+    <div class="d-flex justify-content-center m-5">
+        {{ knp_pagination_render(exercices) }}
+    </div>
+
 {% endblock %}
