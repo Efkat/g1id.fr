@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 {% block title %} {{ course.title }} {% endblock %}
 {% block body %}
-    <p class="redirect my-3">Cours > {{ course.category }} > {{ course.Title }} </p>
+    <p class="redirect m-3"><a href="{{ path('course_list') }}">Cours</a> > {{ course.Title }} > {{ currentChapter.title }}</p>
     <h1 class="content-title text-center">{{ course.title }}</h1>
     <div class="intro-container d-flex flex-row justify-content-around">
         <aside class="">
