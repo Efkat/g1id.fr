@@ -49,11 +49,11 @@
             {{ currentChapter.content|raw }}
 
             {% if currentChapter.slug in slugs %}
-                <div class="text-center">
+                <div class="text-center my-3">
                     <button type="button" class="btn btn-info" disabled>J'ai déjà lu ce chapitre</button>
                 </div>
             {% else %}
-                <div class="text-center">
+                <div class="text-center my-3">
                     <button type="button" class="btn btn-success" onclick="location.href ='/markAsRead/activity/{{ currentChapter.slug }}'">J'ai lu ce chapitre</button>
                 </div>
             {% endif %}
