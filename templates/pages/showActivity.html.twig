@@ -3,8 +3,8 @@
 {% block body %}
     <p class="redirect my-3">Activités > {{ activity.category }} > {{ activity.Title }} </p>
     <h1 class="content-title text-center">{{ activity.title }}</h1>
-<    <div class="intro-container d-flex flex-row justify-content-around">
->        <aside class="">
+    <div class="intro-container d-flex flex-row justify-content-around">
+        <aside class="">
             <section class="border my-3 shadow p-2">
                 <h3>Informations :</h3>
                 <ul>
@@ -17,7 +17,11 @@
                 <h3>Chapitres :</h3>
                 <ul>
                     {% for chapter in chapters %}
-                        <li><a href="{{ path('activity_chapter_show', {'activitySlug': activity.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></li>
+                        {% if chapter.slug in slugs %}
+                            <li><span style="text-decoration: line-through;"><a class="text-secondary" href="{{ path('activity_chapter_show', {'activitySlug': activity.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></span></li>
+                        {% else %}
+                            <li><a href="{{ path('activity_chapter_show', {'activitySlug': activity.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
             </section>
@@ -44,7 +48,7 @@
             <h1>{{ currentChapter.title }}</h1>
             {{ currentChapter.content|raw }}
 
-            {% if isRead %}
+            {% if currentChapter.slug in slugs %}
                 <div class="text-center">
                     <button type="button" class="btn btn-info" disabled>J'ai déjà lu ce chapitre</button>
                 </div>

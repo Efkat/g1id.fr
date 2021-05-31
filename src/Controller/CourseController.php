@@ -61,21 +61,11 @@ class CourseController extends AbstractController
     {
         $user = $this->getUser();
         $parser = new ParsedownExtensionMathJaxLaTex();
-        $chapterRead = false;
 
         $userProgs = $user->getProgressions();
         $userSlugArray = [];
         foreach ($userProgs as $prog){
             array_push($userSlugArray, $prog->getSlug());
-        }
-
-        $tempProg = new Progression();
-        $tempProg->setUser($user)
-            ->setType('course')
-            ->setSlug($chapterSlug);
-
-        if (in_array($chapterSlug, $userSlugArray)){
-            $chapterRead = true;
         }
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -98,7 +88,7 @@ class CourseController extends AbstractController
             "chapters" => $chapters,
             "currentChapter" => $chapter,
             "time" => $timer,
-            "isRead" => $chapterRead
+            "slugs" => $userSlugArray
         ]);
     }
 }
