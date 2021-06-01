@@ -6,6 +6,7 @@ use App\Entity\Exercice;
 use App\Entity\Progression;
 use App\ParsedownExtensionMathJaxLaTex;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ExerciceController extends AbstractController
 {
+    /**
+     * @Route("/e", name="hidden_exercises")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function showHidden(Request $request,PaginatorInterface $paginator){
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(Exercice::class);
+
+        $exercises = $paginator->paginate(
+            $repo->findAllHidden(),
+            $request->query->getInt('page',1),
+            9
+        );
+
+        return $this->render('pages/exerciceList.html.twig', [
+            'exercices' => $exercises,
+            'progs' => null
+        ]);
+    }
+
     /**
      * @Route("/exercices", name="exercice_list")
      */

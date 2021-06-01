@@ -7,6 +7,7 @@ use App\Entity\ActivityChapter;
 use App\Entity\Progression;
 use App\ParsedownExtensionMathJaxLaTex;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ActivityController extends AbstractController
 {
+    /**
+     * @Route("/a", name="hidden_activities")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function showHidden(Request $request,PaginatorInterface $paginator){
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(Activity::class);
+
+        $activities = $paginator->paginate(
+            $repo->findAllHidden(),
+            $request->query->getInt('page',1),
+            9
+        );
+
+        return $this->render('pages/generalList.html.twig', [
+            'contentName' => 'activités',
+            'contents' => $activities
+        ]);
+    }
+
     /**
      * @Route("/activites", name="activity_list")
      */

@@ -27,6 +27,15 @@ class ActivityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllHidden(){
+        return $this->createQueryBuilder('activity')
+            ->orderBy('activity.CreatedAt', 'DESC')
+            ->andWhere('activity.IsVisible = :bool')
+            ->setParameter(':bool', false)
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @return Activity[] Return the 3 last activities
      */

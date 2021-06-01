@@ -27,6 +27,15 @@ class ProjectRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllHidden(){
+        return $this->createQueryBuilder('project')
+            ->orderBy('project.CreatedAt', 'DESC')
+            ->andWhere('project.IsVisible = :bool')
+            ->setParameter(':bool', false)
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @return Project[] Return the 3 last projects
      */

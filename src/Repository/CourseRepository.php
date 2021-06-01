@@ -27,6 +27,15 @@ class CourseRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllHidden(){
+        return $this->createQueryBuilder('course')
+            ->orderBy('course.CreatedAt', 'DESC')
+            ->andWhere('course.IsVisible = :bool')
+            ->setParameter(':bool', false)
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @return Course[] Return the 3 last courses
      */

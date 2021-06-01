@@ -27,6 +27,15 @@ class ExerciceRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllHidden(){
+        return $this->createQueryBuilder('exercice')
+            ->orderBy('exercice.CreatedAt', 'DESC')
+            ->andWhere('exercice.IsVisible = :bool')
+            ->setParameter(':bool', false)
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @return Exercice[] Return the 3 last activities
      */

@@ -7,6 +7,7 @@ use App\Entity\Project;
 use App\Entity\ProjectChapter;
 use App\ParsedownExtensionMathJaxLaTex;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProjectController extends AbstractController
 {
+    /**
+     * @Route("/p", name="hidden_projects")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function showHidden(Request $request,PaginatorInterface $paginator){
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(Project::class);
+
+        $projects = $paginator->paginate(
+            $repo->findAllHidden(),
+            $request->query->getInt('page',1),
+            9
+        );
+
+        return $this->render('pages/generalList.html.twig', [
+            'contentName' => 'projets',
+            'contents' => $projects
+        ]);
+    }
+
     /**
      * @Route("/projets", name="project_list")
      */

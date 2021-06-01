@@ -6,6 +6,7 @@ use App\Entity\Course;
 use App\Entity\CourseChapter;
 use App\Entity\Progression;
 use App\ParsedownExtensionMathJaxLaTex;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,26 @@ use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Pagin
 
 class CourseController extends AbstractController
 {
+    /**
+     * @Route("/c", name="hidden_courses")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function showHidden(Request $request,PaginatorInterface $paginator){
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(Course::class);
+
+        $courses = $paginator->paginate(
+            $repo->findAllHidden(),
+            $request->query->getInt('page',1),
+            9
+        );
+
+        return $this->render('pages/generalList.html.twig', [
+            'contentName' => 'projets',
+            'contents' => $courses
+        ]);
+    }
+
     /**
      * @Route("/cours", name="course_list", methods={"GET"})
      */
