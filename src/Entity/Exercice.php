@@ -68,6 +68,11 @@ class Exercice
      */
     private $Difficulty;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $IsVisible;
+
     public function __construct()
     {
         $this->CreatedAt = new \DateTime();
@@ -176,6 +181,18 @@ class Exercice
     public function setDifficulty(int $Difficulty): self
     {
         $this->Difficulty = $Difficulty;
+
+        return $this;
+    }
+
+    public function getIsVisible(): ?bool
+    {
+        return $this->IsVisible;
+    }
+
+    public function setIsVisible(bool $IsVisible): self
+    {
+        $this->IsVisible = $IsVisible;
 
         return $this;
     }

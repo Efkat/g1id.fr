@@ -5,10 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Exercice;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
 class ExerciceCrudController extends AbstractCrudController
 {
@@ -25,7 +25,8 @@ class ExerciceCrudController extends AbstractCrudController
             TextareaField::new('Help', 'Aide'),
             TextareaField::new('Correction', 'Correction'),
             AssociationField::new('Category', 'Catégories'),
-            ChoiceField::new('Difficulty', 'Difficulté')->setChoices(["Facile" => 1, "Modéré" => 2, "Sportif" => 3, "Difficile" => 4, "Extrème" => 5])
+            ChoiceField::new('Difficulty', 'Difficulté')->setChoices(["Facile" => 1, "Modéré" => 2, "Sportif" => 3, "Difficile" => 4, "Extrème" => 5]),
+            BooleanField::new('IsVisible', 'Visible ?')
         ];
     }
 }
