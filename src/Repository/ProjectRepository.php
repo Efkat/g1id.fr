@@ -30,6 +30,16 @@ class ProjectRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * Used to count Projetcs in database
+     */
+    public function getTotalProjects(){
+        return $this->createQueryBuilder('p')
+            ->select('count(p.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return Project[] Returns an array of Project objects
     //  */

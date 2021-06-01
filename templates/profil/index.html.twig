@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{user.name}}{% endblock %}
+
+{% block body %}
+    <div class="jumbotron w-75 mx-auto">
+        <h1 class="display-4">Bienvenue <strong>{{ user.name }}</strong>,</h1>
+        <hr class="my-4">
+        <p>Voici la liste des éléments lus :</p>
+        <p class="lead">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Nom</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for prog in user.progressions %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ prog.type }}</td>
+                            <td>{{ prog.slug }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+    </div>
+{% endblock %}

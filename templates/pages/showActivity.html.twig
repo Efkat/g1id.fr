@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 {% block title %} {{ activity.Title }} {% endblock %}
 {% block body %}
-    <p class="redirect my-3">Activités > {{ activity.category }} > {{ activity.Title }} </p>
+    <p class="redirect m-3"><a href="{{ path('activity_list') }}">Activités</a> > {{ activity.Title }} > {{ currentChapter.title }} </p>
     <h1 class="content-title text-center">{{ activity.title }}</h1>
     <div class="intro-container d-flex flex-row justify-content-around">
         <aside class="">
@@ -17,15 +17,12 @@
                 <h3>Chapitres :</h3>
                 <ul>
                     {% for chapter in chapters %}
-                        <li><a href="{{ path('activity_chapter_show', {'activitySlug': activity.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></li>
+                        {% if chapter.slug in slugs %}
+                            <li><span style="text-decoration: line-through;"><a class="text-secondary" href="{{ path('activity_chapter_show', {'activitySlug': activity.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></span></li>
+                        {% else %}
+                            <li><a href="{{ path('activity_chapter_show', {'activitySlug': activity.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></li>
+                        {% endif %}
                     {% endfor %}
-                </ul>
-            </section>
-            <section class="border my-3 shadow p-2">
-                <h3>Exercices</h3>
-                <ul>
-                    <li>Blabliblo</li>
-                    <li>Blabliblo</li>
                 </ul>
             </section>
             <section class="border my-3 shadow p-2">
@@ -50,6 +47,16 @@
         {% else %}
             <h1>{{ currentChapter.title }}</h1>
             {{ currentChapter.content|raw }}
+
+            {% if currentChapter.slug in slugs %}
+                <div class="text-center my-3">
+                    <button type="button" class="btn btn-info" disabled>J'ai déjà lu ce chapitre</button>
+                </div>
+            {% else %}
+                <div class="text-center my-3">
+                    <button type="button" class="btn btn-success" onclick="location.href ='/markAsRead/activity/{{ currentChapter.slug }}'">J'ai lu ce chapitre</button>
+                </div>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}

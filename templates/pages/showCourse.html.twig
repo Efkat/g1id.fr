@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 {% block title %} {{ course.title }} {% endblock %}
 {% block body %}
-    <p class="redirect my-3">Cours > {{ course.category }} > {{ course.Title }} </p>
+    <p class="redirect m-3"><a href="{{ path('course_list') }}">Cours</a> > {{ course.Title }} > {{ currentChapter.title }}</p>
     <h1 class="content-title text-center">{{ course.title }}</h1>
     <div class="intro-container d-flex flex-row justify-content-around">
         <aside class="">
@@ -17,15 +17,12 @@
                 <h3>Chapitres :</h3>
                 <ul>
                     {% for chapter in chapters %}
-                        <li><a href="{{ path('course_chapter_show', {'courseSlug': course.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></li>
+                        {% if chapter.slug in slugs %}
+                            <li><span style="text-decoration: line-through;"><a class="text-secondary" href="{{ path('course_chapter_show', {'courseSlug': course.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></span></li>
+                        {% else %}
+                            <li><a href="{{ path('course_chapter_show', {'courseSlug': course.slug, 'chapterSlug': chapter.slug}) }}">{{ chapter.title }}</a></li>
+                        {% endif %}
                     {% endfor %}
-                </ul>
-            </section>
-            <section class="border my-3 shadow p-2">
-                <h3>Exercices</h3>
-                <ul>
-                    <li>Blabliblo</li>
-                    <li>Blabliblo</li>
                 </ul>
             </section>
             <section class="border my-3 shadow p-2">
@@ -50,12 +47,16 @@
         {% else %}
             <h1>{{ currentChapter.title }}</h1>
             <p>{{ currentChapter.content|raw }}</p>
-            <div class="text-center">
-                <form action="#">
-                    <button type="button" class="btn btn-success">J'ai lu ce chapitre</button>
-                </form>
-            </div>
 
+            {% if currentChapter.slug in slugs %}
+                <div class="text-center my-3">
+                    <button type="button" class="btn btn-info" disabled>J'ai déjà lu ce chapitre</button>
+                </div>
+            {% else %}
+                <div class="text-center my-3">
+                    <button type="button" class="btn btn-success" onclick="location.href ='/markAsRead/course/{{ currentChapter.slug }}'">J'ai lu ce chapitre</button>
+                </div>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}

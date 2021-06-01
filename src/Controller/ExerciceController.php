@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Exercice;
+use App\Entity\Progression;
 use App\ParsedownExtensionMathJaxLaTex;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,32 +20,54 @@ class ExerciceController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $exerciceRepository = $entityManager->getRepository(Exercice::class);
+        $user = $this->getUser();
+        $exercisesArray = [];
+
+        if($user){
+            $progRepository = $entityManager->getRepository(Progression::class);
+            $progs = $progRepository->findBy(["type" => "exercice", "user" => $user]);
+
+            foreach ($progs as $prog) {
+                array_push($exercisesArray, $prog->getSlug());
+            }
+        }
 
         $exercises = $paginator->paginate(
             $exerciceRepository->findAll(),
             $request->query->getInt('page',1),
             9
         );
-
         return $this->render('pages/exerciceList.html.twig', [
-            'exercices' => $exercises
+            'exercices' => $exercises,
+            'progs' => $exercisesArray
         ]);
     }
 
     /**
-     * @Route("/exercices/{slug}", name="exercice_post_show")
+     * @Route("/exercice/{slug}", name="exercice_post_show")
      * @param Exercice $exercice
      * @return Response
      */
     public function show(Exercice $exercice): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $progRepo = $em->getRepository(Progression::class);
+
         $parser = new ParsedownExtensionMathJaxLaTex();
+        $isRead = false;
+        $user = $this->getUser();
+        $slug = $exercice->getSlug();
+
+        if($user){
+            $progressions = $progRepo->getAllExercises($user);
+        }
 
         return $this->render("pages/showExercice.html.twig", [
             "title" => $exercice->getTitle(),
             "content" => $parser->parse($exercice->getContent()),
             "help" => $parser->parse($exercice->getHelp()),
-            "correction" => $parser->parse($exercice->getCorrection())
+            "correction" => $parser->parse($exercice->getCorrection()),
+            "slug" => $exercice->getSlug()
         ]);
     }
 }

@@ -30,6 +30,16 @@ class ExerciceRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * Used to count Exercices in database
+     */
+    public function getTotalExercices(){
+        return $this->createQueryBuilder('e')
+            ->select('count(e.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return Exercice[] Returns an array of Exercice objects
     //  */

@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Activity;
 use App\Entity\Course;
 use App\Entity\Exercice;
+use App\Entity\Progression;
 use App\Entity\Project;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +31,42 @@ class HomeController extends AbstractController
             'activities' => $activityRepository->findLast(),
             'exercises' => $exerciceRepository->findLast()
         ]);
+    }
+
+    /**
+     * @Route ("/markAsRead/{type}/{slug}", name="markAsRead")
+     * @param string $type
+     * @param string $slug
+     * @return Response
+     */
+    public function markAsRead(string $type, string $slug): Response
+    {
+        $user = $this->getUser();
+        if($user){
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $progression = new Progression();
+            $progression->setType($type)
+                ->setSlug($slug)
+                ->setUser($user);
+
+            $userProgs = $user->getProgressions();
+            $userProgsArray = [];
+            foreach ($userProgs as $prog){
+                array_push($userProgsArray, $prog->getSlug());
+            }
+
+            if(in_array($progression->getSlug(), $userProgsArray)){
+                return $this->redirectToRoute("home");
+            }else{
+                $entityManager->persist($progression);
+                $entityManager->flush();
+                return $this->redirect("/");
+            }
+
+
+        }
+        return $this->redirectToRoute("home");
     }
 
     public function homeLogged(): Response
