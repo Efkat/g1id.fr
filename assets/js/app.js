@@ -37,4 +37,9 @@ $(document).ready(function (){
             iconSVG.toggleClass('rotated-inversed');
         }
     })
+
+    $('#myTab a[href="#profile"]').tab('show') // Select tab by name
+    $('#myTab li:first-child a').tab('show') // Select first tab
+    $('#myTab li:last-child a').tab('show') // Select last tab
+    $('#myTab li:nth-child(3) a').tab('show') // Select third tab
 })

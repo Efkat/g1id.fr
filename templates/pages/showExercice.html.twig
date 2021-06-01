@@ -4,7 +4,7 @@
     <div class="jumbotron jumbotron-fluid my-0">
         <div class="container">
             <div class="d-flex flex-row justify-content-between align-items-center">
-                <h1 class="display-4">Énoncé</h1>
+                <h1 class="display-4">{{ title }}</h1>
                 <p><button type="button" class="btn btn-success" onclick="location.href ='/markAsRead/exercice/{{ slug }}'">J'ai fais cet exercice.</button></p>
             </div>
             <div class="lead"> {{ content | markdown_to_html }} </div>
@@ -21,7 +21,7 @@
             <div class="lead">{{ help | markdown_to_html }}</div>
         </div>
     </div>
-    <div class="jumbotron jumbotron-fluid mx-auto w-75 solution-container">
+    <div class="jumbotron jumbotron-fluid mx-auto w-75 mt-4 solution-container">
         <div class="container">
             <h1 class="display-4">Solution</h1>
             <div class="lead">{{ correction | raw }}</div>
