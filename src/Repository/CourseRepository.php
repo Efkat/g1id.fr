@@ -9,7 +9,6 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @method Course|null find($id, $lockMode = null, $lockVersion = null)
  * @method Course|null findOneBy(array $criteria, array $orderBy = null)
- * @method Course[]    findAll()
  * @method Course[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class CourseRepository extends ServiceEntityRepository
@@ -19,6 +18,15 @@ class CourseRepository extends ServiceEntityRepository
         parent::__construct($registry, Course::class);
     }
 
+    public function findAll(){
+        return $this->createQueryBuilder('course')
+            ->orderBy('course.CreatedAt', 'DESC')
+            ->andWhere('course.IsVisible = :bool')
+            ->setParameter(':bool', true)
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @return Course[] Return the 3 last courses
      */
@@ -26,6 +34,8 @@ class CourseRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('course')
             ->orderBy('course.CreatedAt', 'DESC')
             ->setMaxResults(3)
+            ->andWhere('course.IsVisible = :bool')
+            ->setParameter(':bool', true)
             ->getQuery()
             ->getResult();
     }

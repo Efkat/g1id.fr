@@ -9,7 +9,6 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @method Activity|null find($id, $lockMode = null, $lockVersion = null)
  * @method Activity|null findOneBy(array $criteria, array $orderBy = null)
- * @method Activity[]    findAll()
  * @method Activity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ActivityRepository extends ServiceEntityRepository
@@ -19,12 +18,23 @@ class ActivityRepository extends ServiceEntityRepository
         parent::__construct($registry, Activity::class);
     }
 
+    public function findAll(){
+        return $this->createQueryBuilder('activity')
+            ->orderBy('activity.CreatedAt', 'DESC')
+            ->andWhere('activity.IsVisible = :bool')
+            ->setParameter(':bool', true)
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @return Activity[] Return the 3 last activities
      */
     public function findLast(){
         return $this->createQueryBuilder('activity')
             ->orderBy('activity.CreatedAt', 'DESC')
+            ->andWhere('activity.IsVisible = :bool')
+            ->setParameter(':bool', true)
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();

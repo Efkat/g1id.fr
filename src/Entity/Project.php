@@ -64,6 +64,11 @@ class Project
      */
     private $Difficulty;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $IsVisible;
+
     public function __construct()
     {
         $this->projectChapters = new ArrayCollection();
@@ -178,6 +183,18 @@ class Project
     public function setDifficulty(int $Difficulty): self
     {
         $this->Difficulty = $Difficulty;
+
+        return $this;
+    }
+
+    public function getIsVisible(): ?bool
+    {
+        return $this->IsVisible;
+    }
+
+    public function setIsVisible(bool $IsVisible): self
+    {
+        $this->IsVisible = $IsVisible;
 
         return $this;
     }
