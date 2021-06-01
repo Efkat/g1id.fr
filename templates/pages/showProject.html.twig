@@ -28,8 +28,9 @@
             <section class="border my-3 shadow p-2">
                 <h3>Pré-requis</h3>
                 <ul>
-                    <li>Blabliblo</li>
-                    <li>Blabliblo</li>
+                    {% for pre in project.prerequisites %}
+                        <li>{{ pre }}</li>
+                    {% endfor %}
                 </ul>
             </section>
         </aside>
