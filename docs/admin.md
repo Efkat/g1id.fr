@@ -3,5 +3,5 @@
 
 ## Ajout du rôle
 
-Il faut se rendre dans un premier temps sur PHPMyAdmin et repérer la ligne représentant l'utilisateur visé. Dans la colonne **roles**, ajouter : **["ROLE_ADMIN"]**.
+Il faut de se rendre dans un premier temps sur le dashboard et ajouter une ligne au champ **Rôles**. Dans la colonne **roles**, ajouter : **["ROLE_ADMIN"]**.
 Grace à ce rôle, il est possible d'accéder au dashboard.
