@@ -106,5 +106,10 @@ A COMPLETER
 ### Insérer une image
 `![Texte alternatif](https://wprock.fr/wp-content/uploads/2018/11/wprock-wallpaper-wapuu-wordpress-paris-520x254.jpg "Titre, facultatif")`
 ### Insérer une vidéo
-  A COMPLETER
+  ```
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="..."></iframe> // Correspond au code d'intégration fourni par youtube
+  </div>
+  ```
+  Il ne faut pas oublier de retirer lees attributs width et height pré-écris par youtube pour éviter les surcharges de styles.
  
