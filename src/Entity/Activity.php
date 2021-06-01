@@ -69,12 +69,18 @@ class Activity
      */
     private $IsVisible;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $Prerequisites = [];
+
 
 
     public function __construct()
     {
         $this->activityChapters = new ArrayCollection();
         $this->CreatedAt = new \DateTime();
+        $this->Prerequisites = [];
     }
 
     public function getId(): ?int
@@ -197,6 +203,18 @@ class Activity
     public function setIsVisible(bool $IsVisible): self
     {
         $this->IsVisible = $IsVisible;
+
+        return $this;
+    }
+
+    public function getPrerequisites(): ?array
+    {
+        return $this->Prerequisites;
+    }
+
+    public function setPrerequisites(array $Prerequisites): self
+    {
+        $this->Prerequisites = $Prerequisites;
 
         return $this;
     }
