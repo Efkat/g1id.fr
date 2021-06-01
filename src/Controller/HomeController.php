@@ -61,7 +61,7 @@ class HomeController extends AbstractController
             }else{
                 $entityManager->persist($progression);
                 $entityManager->flush();
-                return $this->redirect("/");
+                return $this->redirect("/profil");
             }
 
 
