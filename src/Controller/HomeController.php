@@ -34,12 +34,13 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route ("/markAsRead/{type}/{slug}", name="markAsRead")
+     * @Route ("/markAsRead/{type}/{slug}/{parent}", name="markAsRead")
      * @param string $type
      * @param string $slug
+     * @param string $parent
      * @return Response
      */
-    public function markAsRead(string $type, string $slug): Response
+    public function markAsRead(string $type, string $slug, string $parent): Response
     {
         $user = $this->getUser();
         if($user){
@@ -58,10 +59,53 @@ class HomeController extends AbstractController
 
             if(in_array($progression->getSlug(), $userProgsArray)){
                 return $this->redirectToRoute("home");
+            }else{
+                $entityManager->persist($progression);
+                $entityManager->flush();
+                if($parent){
+                    return $this->redirectToRoute("/$type/$parent/$slug");
+                }else{
+                    return $this->redirectToRoute("/$type/$slug");
+                }
             }
 
-            $entityManager->persist($progression);
-            $entityManager->flush();
+
+        }
+        return $this->redirectToRoute("home");
+    }
+
+    /**
+     * @Route ("/markAsRead/{type}/{slug}", name="markAsRead")
+     * @param string $type
+     * @param string $slug
+     * @return Response
+     */
+    public function markAsReadEx(string $type, string $slug): Response
+    {
+        $user = $this->getUser();
+        if($user){
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $progression = new Progression();
+            $progression->setType($type)
+                ->setSlug($slug)
+                ->setUser($user);
+
+            $userProgs = $user->getProgressions();
+            $userProgsArray = [];
+            foreach ($userProgs as $prog){
+                array_push($userProgsArray, $prog->getSlug());
+            }
+
+            if(in_array($progression->getSlug(), $userProgsArray)){
+                return $this->redirectToRoute("home");
+            }else{
+                $entityManager->persist($progression);
+                $entityManager->flush();
+                return $this->redirect("/$type/$slug");
+            }
+
+
         }
         return $this->redirectToRoute("home");
     }

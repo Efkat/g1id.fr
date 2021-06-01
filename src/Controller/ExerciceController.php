@@ -44,7 +44,7 @@ class ExerciceController extends AbstractController
     }
 
     /**
-     * @Route("/exercices/{slug}", name="exercice_post_show")
+     * @Route("/exercice/{slug}", name="exercice_post_show")
      * @param Exercice $exercice
      * @return Response
      */
@@ -60,10 +60,6 @@ class ExerciceController extends AbstractController
 
         if($user){
             $progressions = $progRepo->getAllExercises($user);
-            foreach ($progressions as $progression) {
-                dump($progression);
-            }
-            dump($isRead);
         }
 
         return $this->render("pages/showExercice.html.twig", [
